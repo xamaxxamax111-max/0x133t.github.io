@@ -1,0 +1,1512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Asset Daily Briefing</title>
+<script>
+  // Apply theme BEFORE the page renders to avoid a flash of light mode.
+  (function(){
+    try {
+      var t = localStorage.getItem("brief.theme");
+      if (t !== "light" && t !== "dark") {
+        t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (e) { document.documentElement.setAttribute("data-theme", "light"); }
+  })();
+</script>
+<style>
+  :root,
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg-grad-1: radial-gradient(1200px 600px at 8% -10%, #e0d8ff 0%, transparent 55%),
+                 radial-gradient(900px 500px at 100% 0%, #cff1ff 0%, transparent 50%),
+                 radial-gradient(1000px 700px at 50% 110%, #f0e0ff 0%, transparent 55%),
+                 linear-gradient(180deg, #f6f4ff 0%, #f3f9ff 100%);
+    --ink: #0b1530;
+    --ink-soft: #4a5170;
+    --ink-mute: #7a8099;
+    --accent: #6c5cff;
+    --accent-2: #00b8d4;
+    --accent-3: #b455ff;
+    --good: #00a86b;
+    --warn: #ff9d3a;
+    --hot:  #ff4d8d;
+    --glass: rgba(255,255,255,0.62);
+    --glass-strong: rgba(255,255,255,0.82);
+    --glass-line: rgba(255,255,255,0.85);
+    --border: rgba(60,40,160,0.10);
+    --shadow: 0 8px 28px rgba(45,30,120,0.10);
+    --shadow-lg: 0 18px 60px rgba(45,30,120,0.18);
+    --feed-hover-grad: linear-gradient(90deg, rgba(108,92,255,0.05), rgba(0,184,212,0.05));
+    --panel-head-bg: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+    --ticker-bg: rgba(255,255,255,0.82);
+    --editor-note-bg: linear-gradient(135deg, rgba(108,92,255,0.10), rgba(0,184,212,0.10));
+    --editor-note-border: rgba(108,92,255,0.20);
+    --skeleton-grad: linear-gradient(90deg, rgba(108,92,255,0.08), rgba(108,92,255,0.18), rgba(108,92,255,0.08));
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg-grad-1: radial-gradient(1200px 600px at 8% -10%, #2a1d56 0%, transparent 55%),
+                 radial-gradient(900px 500px at 100% 0%, #0c2940 0%, transparent 50%),
+                 radial-gradient(1000px 700px at 50% 110%, #2d1450 0%, transparent 55%),
+                 linear-gradient(180deg, #0b0a1f 0%, #050a18 100%);
+    --ink: #ecedfa;
+    --ink-soft: #b6bcd9;
+    --ink-mute: #8088b0;
+    --accent: #9a8cff;
+    --accent-2: #4ad8ff;
+    --accent-3: #d088ff;
+    --good: #2ee3a0;
+    --warn: #ffb454;
+    --hot:  #ff6aa8;
+    --glass: rgba(255,255,255,0.05);
+    --glass-strong: rgba(255,255,255,0.08);
+    --glass-line: rgba(255,255,255,0.10);
+    --border: rgba(180,170,255,0.14);
+    --shadow: 0 8px 28px rgba(0,0,0,0.45);
+    --shadow-lg: 0 18px 60px rgba(0,0,0,0.55);
+    --feed-hover-grad: linear-gradient(90deg, rgba(154,140,255,0.10), rgba(74,216,255,0.10));
+    --panel-head-bg: linear-gradient(180deg, rgba(20,18,48,0.55), rgba(15,12,40,0.20));
+    --ticker-bg: rgba(20,18,48,0.55);
+    --editor-note-bg: linear-gradient(135deg, rgba(154,140,255,0.18), rgba(74,216,255,0.14));
+    --editor-note-border: rgba(154,140,255,0.30);
+    --skeleton-grad: linear-gradient(90deg, rgba(154,140,255,0.10), rgba(154,140,255,0.22), rgba(154,140,255,0.10));
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg-grad-1);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--accent); }
+
+  /* ====== Layout ====== */
+  .shell {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 20px 22px 60px;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    font-weight: 700; letter-spacing: -0.01em;
+    font-size: 17px;
+  }
+  .logo {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background:
+      conic-gradient(from 200deg, #6c5cff, #00b8d4, #b455ff, #6c5cff);
+    box-shadow: 0 6px 22px rgba(108,92,255,0.45);
+    position: relative;
+  }
+  .logo::after {
+    content: "";
+    position: absolute; inset: 5px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 7px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9);
+  }
+  .logo::before {
+    content: "₿";
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-weight: 800; color: var(--accent);
+    font-size: 18px; z-index: 2;
+  }
+  .brand-sub {
+    color: var(--ink-mute);
+    font-weight: 500;
+    font-size: 12px;
+    margin-left: 2px;
+    letter-spacing: 0.02em;
+  }
+  .meta {
+    margin-left: auto;
+    display: flex; align-items: center; gap: 10px;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+  }
+  .theme-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--glass-strong);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.18s;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .theme-toggle:hover {
+    color: var(--ink);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle .icon {
+    width: 14px; height: 14px;
+    display: inline-block;
+    line-height: 1;
+  }
+  .theme-toggle .label { letter-spacing: 0.02em; }
+
+  .collapse-btn {
+    margin-left: auto;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 12px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-size: 11.5px;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+  .collapse-btn:hover {
+    background: var(--glass-strong);
+    color: var(--ink);
+    transform: translateY(-1px);
+  }
+  .collapse-btn .cbtn-icon {
+    font-size: 12px;
+    line-height: 1;
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  .collapse-btn.expanded .cbtn-icon { transform: rotate(180deg); }
+  .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--good);
+    box-shadow: 0 0 0 0 rgba(0,168,107,0.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(0,168,107,0.55); }
+    70%  { box-shadow: 0 0 0 10px rgba(0,168,107,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,168,107,0); }
+  }
+
+  /* ====== Ticker ====== */
+  .ticker {
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--ticker-bg);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--shadow);
+    padding: 8px 14px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .ticker .track {
+    display: flex; gap: 36px;
+    white-space: nowrap;
+    animation: scroll 60s linear infinite;
+    will-change: transform;
+  }
+  .ticker:hover .track { animation-play-state: paused; }
+  .ticker .item {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+  .ticker .item .src {
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 10.5px;
+  }
+  .ticker .item .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent-2);
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ====== Grid ====== */
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 18px;
+    align-items: start;
+  }
+  @media (max-width: 1080px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  .panel {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
+  }
+  .panel::before {
+    content: "";
+    position: absolute; left: 0; right: 0; top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(108,92,255,0.4), transparent);
+  }
+  .panel-head {
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel-head-bg);
+  }
+  .panel-head .panel-title { color: var(--ink); }
+  .panel-head .panel-sub   { color: var(--ink-soft); }
+  .panel-title {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.005em;
+  }
+  .panel-sub {
+    color: var(--ink-mute);
+    font-size: 11.5px;
+    font-weight: 500;
+    margin-left: 8px;
+  }
+  .badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(108,92,255,0.15), rgba(0,184,212,0.15));
+    color: var(--accent);
+    font-weight: 700;
+    border: 1px solid rgba(108,92,255,0.18);
+  }
+  .badge.live {
+    background: linear-gradient(135deg, rgba(0,168,107,0.15), rgba(0,184,212,0.15));
+    color: var(--good);
+    border-color: rgba(0,168,107,0.25);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .badge.live::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--good);
+    box-shadow: 0 0 0 0 rgba(0,168,107,0.55);
+    animation: pulse 2s infinite;
+  }
+
+  /* ====== Briefing (left) ====== */
+  .briefing {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding: 4px 0;
+  }
+  .briefing::-webkit-scrollbar { width: 10px; }
+  .briefing::-webkit-scrollbar-thumb {
+    background: rgba(108,92,255,0.25);
+    border-radius: 10px;
+  }
+  .briefing::-webkit-scrollbar-track { background: transparent; }
+
+  .editor-note {
+    padding: 14px 18px;
+    margin: 12px 14px;
+    border-radius: 12px;
+    background: var(--editor-note-bg);
+    border: 1px solid var(--editor-note-border);
+    color: var(--ink);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .editor-note .label {
+    font-size: 10px; text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.10em;
+    font-weight: 800;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .theme {
+    border-top: 1px solid var(--border);
+    padding: 10px 0 4px;
+  }
+  .theme:first-of-type { border-top: 0; }
+  .theme-head {
+    padding: 8px 18px 10px;
+    display: flex; align-items: center; gap: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .theme-head:hover { background: rgba(108,92,255,0.04); }
+  .theme-head .name {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: -0.005em;
+  }
+  .theme-head .count {
+    background: rgba(108,92,255,0.10);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 11px;
+    padding: 1px 8px;
+    font-weight: 700;
+    margin-left: auto;
+  }
+  .theme-head .chev {
+    color: var(--ink-mute);
+    transition: transform 0.2s;
+    font-size: 11px;
+  }
+  .theme.collapsed .chev { transform: rotate(-90deg); }
+  .theme.collapsed .stories { display: none; }
+
+  .stories { padding: 0 18px 12px; }
+  .story {
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(60,40,160,0.10);
+  }
+  .story:last-child { border-bottom: 0; }
+  .story .score {
+    display: inline-block;
+    color: var(--warn);
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  .story .headline {
+    font-weight: 600;
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: var(--ink);
+    display: block;
+  }
+  .story .headline:hover { color: var(--accent); }
+  .story .also {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .story .also a { color: var(--accent); border-bottom: 1px dotted rgba(108,92,255,0.4); }
+
+  /* ====== Live feed (right) ====== */
+  .tabs {
+    display: flex; gap: 4px;
+    padding: 10px 14px 0;
+    flex-wrap: wrap;
+  }
+  .tab {
+    border: 1px solid var(--border);
+    background: var(--glass);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .tab:hover { background: var(--glass-strong); color: var(--ink); }
+  .tab.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent-3));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(108,92,255,0.30);
+  }
+  .tab .n {
+    background: rgba(0,0,0,0.07);
+    border-radius: 999px;
+    padding: 1px 6px;
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+  .tab.active .n { background: rgba(255,255,255,0.25); color: #fff; }
+
+  .feed-wrap {
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    padding: 10px 0;
+  }
+  .feed-wrap::-webkit-scrollbar { width: 10px; }
+  .feed-wrap::-webkit-scrollbar-thumb {
+    background: rgba(108,92,255,0.22);
+    border-radius: 10px;
+  }
+  .feed-wrap::-webkit-scrollbar-track { background: transparent; }
+
+  .feed-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 14px;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+    cursor: pointer;
+    align-items: start;
+  }
+  .feed-item:hover {
+    background: var(--feed-hover-grad);
+  }
+  .feed-item .time {
+    color: var(--ink-mute);
+    font-size: 11.5px;
+    font-variant-numeric: tabular-nums;
+    padding-top: 2px;
+    font-weight: 500;
+  }
+  .feed-item .time .ago {
+    display: block;
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .feed-item .body { min-width: 0; }
+  .feed-item .subject {
+    font-weight: 600;
+    font-size: 13.5px;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .feed-item:hover .subject { color: var(--accent); }
+  .feed-item .meta {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin: 0; flex-wrap: wrap;
+  }
+  .feed-item .source {
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 10.5px;
+  }
+  .feed-item .cat {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .cat-inst    { background: rgba(108,92,255,0.12); color: #4a3fcc; }
+  .cat-stable  { background: rgba(0,184,212,0.12);  color: #007a8e; }
+  .cat-token   { background: rgba(180,85,255,0.12); color: #7b2cb8; }
+  .cat-reg     { background: rgba(255,77,141,0.12); color: #c2306a; }
+  .cat-defi    { background: rgba(0,168,107,0.12);  color: #006c45; }
+  .cat-macro   { background: rgba(255,157,58,0.14); color: #c25e00; }
+  .cat-other   { background: rgba(122,128,153,0.14); color: #585c75; }
+
+  .feed-item .snippet {
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    line-height: 1.45;
+    margin-top: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .feed-item .arrow {
+    color: var(--ink-mute);
+    font-size: 18px;
+    align-self: center;
+    transition: transform 0.15s, color 0.15s;
+  }
+  .feed-item:hover .arrow {
+    color: var(--accent);
+    transform: translateX(3px);
+  }
+
+  /* ====== Loading & empty ====== */
+  .loader {
+    padding: 60px 24px;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 13px;
+  }
+  .skeleton {
+    height: 14px;
+    background: var(--skeleton-grad);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite;
+    border-radius: 6px;
+    margin: 8px 0;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .empty {
+    padding: 36px 18px;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 13px;
+  }
+
+  .footer-note {
+    color: var(--ink-mute);
+    font-size: 11.5px;
+    margin-top: 14px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ====== Topbar ====== -->
+  <header class="topbar">
+    <div class="logo"></div>
+    <div>
+      <div class="brand">Digital Asset Daily<span class="brand-sub">&nbsp;Briefing &amp; Live Feed</span></div>
+    </div>
+    <div class="meta">
+      <span class="pulse"></span>
+      <span id="status-line">Loading…</span>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle light/dark mode">
+        <span class="icon" id="theme-icon">☀</span>
+        <span class="label" id="theme-label">Light</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ====== Headline ticker ====== -->
+  <div class="ticker" id="ticker">
+    <div class="track" id="ticker-track">
+      <span class="item"><span class="src">Initializing</span> Fetching latest headlines<span class="dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ====== Two-pane grid ====== -->
+  <div class="grid">
+
+    <!-- LEFT: Today's briefing -->
+    <section class="panel">
+      <div class="panel-head">
+        <span class="badge">Today's Brief</span>
+        <span class="panel-title" id="brief-date">Morning Briefing</span>
+        <span class="panel-sub" id="brief-sub"></span>
+        <button class="collapse-btn" id="collapse-all" type="button" title="Collapse or expand all sections">
+          <span class="cbtn-icon" id="cbtn-icon">⌃</span>
+          <span class="cbtn-label" id="cbtn-label">Collapse all</span>
+        </button>
+      </div>
+      <div class="briefing" id="briefing">
+        <div class="loader">
+          <div class="skeleton" style="width: 80%; margin: 8px auto;"></div>
+          <div class="skeleton" style="width: 60%; margin: 8px auto;"></div>
+          <div class="skeleton" style="width: 70%; margin: 8px auto;"></div>
+          <div style="margin-top: 12px;">Loading today's intelligence brief…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Live feed -->
+    <section class="panel">
+      <div class="panel-head">
+        <span class="badge live">Live Feed</span>
+        <span class="panel-title">Streaming Headlines</span>
+        <span class="panel-sub" id="feed-sub">crypto · blockchain · fintech</span>
+      </div>
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-cat="all">All <span class="n" id="n-all">·</span></button>
+        <button class="tab" data-cat="inst">Institutional <span class="n" id="n-inst">·</span></button>
+        <button class="tab" data-cat="stable">Stablecoins <span class="n" id="n-stable">·</span></button>
+        <button class="tab" data-cat="token">Tokenization <span class="n" id="n-token">·</span></button>
+        <button class="tab" data-cat="reg">Regulation <span class="n" id="n-reg">·</span></button>
+        <button class="tab" data-cat="defi">DeFi / Tech <span class="n" id="n-defi">·</span></button>
+        <button class="tab" data-cat="macro">Markets <span class="n" id="n-macro">·</span></button>
+      </div>
+      <div class="feed-wrap" id="feed">
+        <div class="loader">
+          <div class="skeleton" style="width: 90%; margin: 8px 18px;"></div>
+          <div class="skeleton" style="width: 75%; margin: 8px 18px;"></div>
+          <div class="skeleton" style="width: 85%; margin: 8px 18px;"></div>
+          <div class="skeleton" style="width: 70%; margin: 8px 18px;"></div>
+          <div style="margin-top: 12px;">Fetching latest news…</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="footer-note">
+    Briefing and headlines refreshed daily by the 8 AM scheduled task · Click any headline to open the source
+  </div>
+
+</div>
+
+<script>
+"use strict";
+
+/* ======================================================
+   STATE
+   ====================================================== */
+
+/* ====== EMBEDDED DATA (refreshed by the 8 AM scheduled task) ====== */
+const BRIEFING_MD = `☀️ **Morning Brief — Saturday, May 16, 2026**
+
+This week's news represents a structural inflection point rather than incremental progress: the US regulatory framework for digital assets is crystallising at the exact moment institutional infrastructure is becoming production-ready. The CLARITY Act's bipartisan Senate Banking Committee passage, Moody's first AAA rating on an ERC-20 tokenized fund, DTCC's Collateral AppChain timeline confirmation, and BlackRock's stablecoin yield product filings are converging signals that the institutional digital asset market is transitioning from pilot to deployment at scale. GSIBs that have been waiting for regulatory clarity before committing resources no longer have that excuse.
+
+---
+
+### 🏦 Institutional Adoption & Market Structure
+
+**⚡⚡⚡⚡ [Charles Schwab opens spot BTC and ETH trading to 39 million accounts at 75bps, entering a retail crypto fee war that Morgan Stanley's E*Trade started one week earlier at 50bps.](https://substack.com/redirect/0091dfa1-b814-44c8-be1f-398541a63c56?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+Schwab Crypto launched May 13 with custody at Charles Schwab Premier Bank and Paxos providing sub-custody and execution. BTC and ETH appear alongside traditional holdings across all Schwab platforms. Morgan Stanley's E*Trade beat them to market on May 6 at 50bps across 8.6M accounts with BTC, ETH, and SOL — making Schwab's "lowest in the industry" claim outdated on day one. Robinhood remains effectively free via PFOF; Fidelity charges ~1%.
+- ***Why this matters:*** Two of the largest US retail brokerage platforms are now in a fee-compression race on crypto that mirrors the 2019 zero-commission equity trading collapse.
+
+**⚡⚡⚡ [CME Group plans to launch cash-settled, Nasdaq-backed crypto index futures on June 8, pending regulatory review.](https://substack.com/redirect/f4fbbdc4-9e41-450b-b998-6a266e3f8880?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+The product offers institutional investors regulated exposure to a basket of crypto assets via cash-settled futures on a Nasdaq-constructed index — no direct custody required.
+
+**⚡⚡⚡ [Strategy (formerly MicroStrategy) formally ends its "never sell" Bitcoin doctrine, establishing explicit sell triggers tied to preferred dividend obligations and NAV ratios.](https://substack.com/redirect/60370bda-d0e4-4d7c-b8be-bc58f0f00fa3?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+CEO Phong Le disclosed on the Q1 2026 earnings call that Strategy will sell BTC when more accretive to BPS than equity issuance, or to fund ~$1.5B in annual preferred dividend obligations on the STRC (11.5% coupon). Sell trigger activates at mNAV below 1.22x. Strategy has raised $8.5B through STRC in 10 months.
+
+**⚡⚡⚡ [Franklin Templeton and Kraken parent Payward announce a strategic partnership to bring tokenized equities and yield products to blockchain networks.](https://substack.com/redirect/273050f6-1e71-47ec-8454-53683f494358?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+The partnership routes institutional-grade tokenized products through Kraken's crypto-native distribution infrastructure, bypassing traditional GSIB distribution channels entirely.
+
+*Also noted:* [KDDI acquires 14.9% of Coincheck Group for $65M](https://substack.com/redirect/6a0a92ea-c94e-4c1f-9237-67593f7a0528?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [21Shares launches first US spot Hyperliquid ETF (THYP) on Nasdaq](https://substack.com/redirect/c0f7dd18-e712-407f-8524-de7bd876f361?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Elliptic raises $120M Series D at $670M valuation](https://substack.com/redirect/796649a8-3f27-4c33-8cc1-a2c88d1ffd23?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [MARA sold 20,880 BTC (~$1.5B) in Q1](https://substack.com/redirect/c5602bcc-859d-4730-ae7f-55c8dd8f66b3?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
+
+---
+
+### 💵 Stablecoins & Payments
+
+**⚡⚡⚡⚡⚡ [BlackRock files two SEC products engineered to capture stablecoin reserve yield that the GENIUS Act prohibits issuers from paying to holders, building a vertical integration from reserve manager to on-chain cash product manufacturer.](https://substack.com/redirect/10d1be95-d5d0-4315-877f-edc5de1ab5ba?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+On May 8, BlackRock filed the BRSRV (BlackRock Daily Reinvestment Stablecoin Reserve Vehicle) — a 2a-7-aligned fund holding sub-93-day Treasuries and overnight repos, with "OnChain Shares" across permissioned public blockchains via Securitize ($3M minimum). Simultaneously, it added an on-chain ERC-20 share class to its $7B Select Treasury Based Liquidity Fund via BNY Mellon as transfer agent on Ethereum.
+
+**⚡⚡⚡⚡ [Circle's Q1 2026 results expose a structural margin squeeze from the Coinbase revenue share, triggering a pivot from stablecoin issuer to blockchain infrastructure company via the ARC token and stablecoin-native L1.](https://substack.com/redirect/02886228-0bc4-4e08-96f2-8c0cdbf34b04?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+Circle reported $694M total revenue (+20% YoY) but net income fell 15% to $55M as distribution costs hit $407M. ARC presale of 740M tokens at $0.30 to consortium including a16z, Apollo, BlackRock, Standard Chartered Ventures, Janus Henderson, Marshall Wace, SBI, and ICE.
+
+**⚡⚡⚡ [Macro strategist Brent Johnson of Santiago Capital argues dollar-backed stablecoins are functioning as a geopolitical instrument of dollar dominance, mechanically creating structural demand for US Treasuries.](https://www.51insights.xyz/p/de-dollarization-is-dead-with-brent)**
+Johnson contends stablecoins are "re-dollarizing the world from the bottom up" — providing permissionless dollar access while requiring reserve purchases of short-term US Treasuries.
+
+*Also noted:* [Anchorage Digital + Grupo Salinas partner for cross-border payments using federally regulated stablecoins](https://substack.com/redirect/707f9665-1c83-415d-a171-7ffd52761d64?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Privy integrates with Stripe Terminal for in-person stablecoin payments via Tap to Pay](https://substack.com/redirect/3bf0ecce-2524-4e83-8806-d3fbbe13c497?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Paybis secures both MiCA CASP and PSD2 licenses from Latvia's central bank](https://substack.com/redirect/b0306305-c459-4b97-8ee4-7139cc2db293?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
+
+---
+
+### 🔗 Tokenization of Real-World Assets
+
+**⚡⚡⚡⚡⚡ [Moody's assigns AAA-mf to FILQ, an ERC-20 tokenized money market fund from Fidelity International — the first time the agency has rated a blockchain-native fund at parity with Goldman Sachs and JPMorgan's traditional MMFs.](https://substack.com/redirect/9eff61b4-5740-480e-89c9-bc54557fedac?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+FILQ is a USD liquidity fund issued via Sygnum Bank's Desygnate tokenization platform, holding short-dated government securities and mirroring Fidelity's $7B Irish-domiciled LVNAV MMF. Launches with ~$10M on-chain AUM; 24/7 stablecoin-funded subscriptions; no CUSIPs or transfer agents.
+
+**⚡⚡⚡⚡⚡ [DTCC confirms its Collateral AppChain is on track for Q4 2026 production, with independent modeling showing a single institution moving 25% of its book onto the platform freeing $1.9B in capital by year three.](https://substack.com/redirect/e788f208-9549-4b16-9fc3-72f308604855?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+AppChain built on Chainlink infrastructure, providing a shared ledger across BNY, JPMorgan, Euroclear, and Clearstream. Joint whitepaper with Finadium released May 13.
+
+**⚡⚡⚡⚡ [JPMorgan files a competing tokenized money market fund (JLTXX) for stablecoin reserves, entering the same product category as BlackRock's BRSRV in a race to own on-chain institutional cash.](https://substack.com/redirect/59fdff3a-b7a9-4873-b920-f8d07ddc8dab?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+Filing positions JPMorgan's onchain liquidity infrastructure as a primary vehicle for institutional stablecoin reserve management post-GENIUS Act.
+
+**⚡⚡⚡⚡ BCG's flagship "Future of Digital Assets" report — projecting tokenized RWAs at $88T (16% of global investable assets) by 2035 — releases Monday via 51 Insights with free download.**
+Key projected figures: tokenized RWAs at $88T by 2035; stablecoins plateauing at ~$9T (15% of M2). 68-page report covering Board, CRO, CTO, and ExCo perspectives.
+
+**⚡⚡⚡ [Broadridge expands its tokenization engine to support equities, funds, alternative assets, and money market instruments on a single multi-asset platform.](https://substack.com/redirect/fe4996d5-92ef-48b2-ac67-43d4e1700cfb?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+
+*Also noted:* [Animoca Brands and Nuva Labs launch NUVA marketplace connecting $19B tokenized RWAs to DeFi liquidity](https://substack.com/redirect/f33d7a76-0aae-4615-8867-7dbe8d969e9e?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
+
+---
+
+### 🛠️ Technology & Infrastructure
+
+**⚡⚡⚡ [DTCC selects Chainlink as the infrastructure and data standards provider for the Collateral AppChain, cementing Chainlink as the oracle and connectivity layer for institutional blockchain infrastructure at market-structure scale.](https://substack.com/redirect/e788f208-9549-4b16-9fc3-72f308604855?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+
+*Also noted:* [Pepperstone deploys Fireblocks for custody, compliance, and DeFi execution](https://substack.com/redirect/c03a4466-0eba-42f2-9a8e-9955f6eb3473?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
+
+---
+
+### 📊 Markets & Macro
+
+**⚡⚡⚡ [Gold crossing $5,000 and the DXY holding near 99.66 simultaneously validate a macro framework in which dollar-denominated stablecoins — not de-dollarization — define the next phase of global monetary dynamics.](https://www.51insights.xyz/p/de-dollarization-is-dead-with-brent)**
+Santiago Capital's Brent Johnson notes both his original 2018 price targets have now materialized: gold at $5,000 (~400% return) and dollar relative strength.
+
+---
+
+### 🏛️ Regulation & Policy
+
+**⚡⚡⚡⚡⚡ [The CLARITY Act advances through the US Senate Banking Committee 15-9 in a bipartisan vote, with six major bank trade associations publicly shifting from opposition to negotiation.](https://www.veradiverdict.com/p/a-landmark-win-for-crypto)**
+The 309-page bill draws SEC/CFTC jurisdictional lines, introduces a 49% beneficial ownership decentralization test, prohibits interest-equivalent stablecoin yield payments, provides developer safe harbors, and creates insolvency safe harbors enabling institutional prime brokerage and clearing. ABA, BPI, Consumer Bankers Association, the Forum, ICBA, and NBA jointly stated support.
+
+**⚡⚡⚡⚡ [Kevin Warsh, a known crypto advocate, is confirmed as the new Federal Reserve Chair, shifting the Fed's posture on digital assets at the most senior level.](https://substack.com/redirect/ce7f90a0-34e4-445f-8b08-9616a8d64fe5?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+
+**⚡⚡⚡⚡ [The Bank of England formally classifies stablecoins as a "new form of money" on par with e-money and tokenized deposits.](https://substack.com/redirect/c1c52fb2-c0c0-49ed-a714-5f12ae4ac4b4?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+
+*Also noted:* [CFTC files amicus brief in KalshiEx LLC v. Schuler seeking federal preemption over state gambling regulation](https://substack.com/redirect/14320e34-7e20-481c-8dbc-1af95505456f?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Arkham publishes on-chain map of Tron wallets tied to Iran's central bank](https://substack.com/redirect/712437cb-6542-4920-9b52-79f0ff4cba0b?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Vietnam signals regulated domestic crypto market could launch as early as Q3 2026](https://substack.com/redirect/0b5419db-e3bc-4f2a-b654-e1f9dd3624d5?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Bhutan's Gelephu Mindfulness City launches accelerated licensing for globally regulated crypto firms](https://substack.com/redirect/7d519c4f-c46c-4d5a-9f90-229fded4b8ab?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
+`;
+const FEED_ITEMS = [{"id": "19e3143d25651832", "subject": "A Landmark Win for Crypto", "sender": "Substack", "snippet": "CLARITY Act Advances Through Senate Banking Committee. The 309-page bill draws SEC/CFTC jurisdictional lines and creates insolvency safe harbors enabling institutional prime brokerage.", "date": "2026-05-16T14:48:58Z", "cat": "reg", "url": "https://www.veradiverdict.com/p/a-landmark-win-for-crypto"}, {"id": "19e2de29be9380de", "subject": "178: BlackRock to squeeze stablecoin yield", "sender": "Substack", "snippet": "Watch now (7 mins) | Coming Monday: BCG's flagship report on the future of digital assets in banking — 68 pages projecting tokenized RWAs at $88T by 2035.", "date": "2026-05-15T23:04:16Z", "cat": "stable", "url": "https://www.51insights.xyz/p/178-moodys-aaa-for-an-erc-20"}, {"id": "19e2cebfa5b27625", "subject": "How stablecoins saved the dollar, with Brent Johnson, Santiago Capital", "sender": "Substack", "snippet": "Watch now (36 mins) | Hi, it's Marc. Santiago Capital's Brent Johnson argues dollar-backed stablecoins are re-dollarizing the world from the bottom up — creating structural Treasury demand.", "date": "2026-05-15T17:35:00Z", "cat": "other", "url": "https://www.51insights.xyz/p/de-dollarization-is-dead-with-brent"}, {"id": "19e2b67c7de1d6b4", "subject": "Circle Launches Arc Token (MC 5/14)", "sender": "Mail", "snippet": "PLUS Ep 32: Irina Chuchkina on Wallet in Telegram's Local Growth Playbook. Circle's ARC token presale at $0.30 to consortium including a16z, Apollo, BlackRock, Standard Chartered Ventures, Janus Henderson, Marshall Wace, SBI, and ICE.", "date": "2026-05-15T11:31:21Z", "cat": "stable", "url": "https://content.stablecon.com/p/circle-launches-arc-token-mc-5-14"}, {"id": "19e2b57eb2e46d29", "subject": "The law was built for companies. The future may run on networks.", "sender": "Substack", "snippet": "Why the CLARITY Act is really about whether decentralized networks can exist as first-class institutions in the United States.", "date": "2026-05-15T11:12:09Z", "cat": "reg", "url": "https://a16zcrypto.substack.com/p/the-law-was-built-for-companies-the"}, {"id": "19e2b32670dfeb4c", "subject": "Bank of England Considers Rollback of Stablecoin Restrictions", "sender": "Tokenizationinsight", "snippet": "Digital Asset Commercialization Insights | Bank of England considers potential rollback of stablecoin restrictions in the UK. The BoE is reassessing its proposed stablecoin framework after industry feedback.", "date": "2026-05-15T10:33:02Z", "cat": "reg", "url": "https://www.tokenizationinsight.com/post/bank-of-england-considers-rollback-of-stablecoin-restrictions"}, {"id": "19e2217e8048749e", "subject": "JPMorgan to Launch Tokenized Money Market Fund on Ethereum", "sender": "Tokenizationinsight", "snippet": "Digital Asset Commercialization Insights | JPMorgan to launch a second tokenized MMF on Ethereum. JPMorgan Asset Management has filed for the JPMorgan OnChain Liquidity-Token Money Market Fund (ticker: JLTXX).", "date": "2026-05-13T16:07:31Z", "cat": "token", "url": "https://www.tokenizationinsight.com/post/jpmorgan-to-launch-tokenized-money-market-fund-on-ethereum"}, {"id": "19e20f27a213f358", "subject": "The Reserves Race Begins", "sender": "Mail", "snippet": "Two SEC filings, three institutional raises, one Bank of England verdict. The flywheel between Wall Street capital and onchain infrastructure is spinning.", "date": "2026-05-13T10:47:01Z", "cat": "reg", "url": "https://news.enterpriseonchain.com/p/the-reserves-race-begins"}, {"id": "19e20ef19db5cf5e", "subject": "JPMorgan Kinexys Surpasses $3 Trillion in Tokenized Repo since Launch", "sender": "Tokenizationinsight", "snippet": "Digital Asset Commercialization Insights | JPMorgan has processed $3 trillion worth of tokenized repo since launch six years ago according to Bloomberg.", "date": "2026-05-13T10:43:19Z", "cat": "token", "url": "https://www.tokenizationinsight.com/post/jpmorgan-kinexys-surpasses-3-trillion-in-tokenized-repo-since-launch"}];
+const GENERATED_AT = "2026-05-16T23:48:26.548349+00:00";
+
+const State = {
+  brief: null,
+  feed: [],
+  activeCat: localStorage.getItem("brief.activeCat") || "all",
+};
+
+/* ======================================================
+   CATEGORIZATION
+   ====================================================== */
+const CAT_META = {
+  all:    { label: "All",            cls: "" },
+  inst:   { label: "Institutional",  cls: "cat-inst" },
+  stable: { label: "Stablecoins",    cls: "cat-stable" },
+  token:  { label: "Tokenization",   cls: "cat-token" },
+  reg:    { label: "Regulation",     cls: "cat-reg" },
+  defi:   { label: "DeFi / Tech",    cls: "cat-defi" },
+  macro:  { label: "Markets",        cls: "cat-macro" },
+  other:  { label: "Crypto",         cls: "cat-other" },
+};
+
+function categorize(subject, snippet, sender) {
+  const t = (subject + " " + snippet + " " + sender).toLowerCase();
+  if (/\b(clarity act|genius act|sec|cftc|regulat|legislat|congress|senate|house|policy|fed\b|federal reserve|treasury\b|comply|complian|sanction|aml|kyc|license|licens|enforcement|lawsuit|court|ruling|bill\b|mica|stable.act)\b/.test(t)) return "reg";
+  if (/\b(stablecoin|usdc|usdt|tether|circle|paypal|stripe|pyusd|payment|payments|cross.border|remittance|paybis|payy?ward)\b/.test(t)) return "stable";
+  if (/\b(token[iy]z|rwa|real.world|tokenized fund|tokenized mmf|money market|tokenized bond|tokenized treasury|filq|buidl|brsrv|jltxx|broadridge|securitize|sygnum)\b/.test(t)) return "token";
+  if (/\b(defi|protocol|tvl|layer.?[12]|l1\b|l2\b|chainlink|optimism|arbitrum|base|solana|ethereum upgrade|hack|exploit|smart contract|appchain|onchain|on.chain|infrastructure)\b/.test(t)) return "defi";
+  if (/\b(blackrock|jpmorgan|jp morgan|fidelity|schwab|morgan stanley|goldman|hsbc|citi\b|standard chartered|state street|bny|bnp|barclays|ubs|deutsche|wells fargo|asset manager|etf|prime broker|dtcc|custody|institutional)\b/.test(t)) return "inst";
+  if (/\b(bitcoin price|btc price|eth price|market|macro|gold\b|dxy|inflation|rate cut|fomc|equities|s&p|nasdaq|index|yield)\b/.test(t)) return "macro";
+  return "other";
+}
+
+/* ======================================================
+   TIME HELPERS
+   ====================================================== */
+function timeAgo(iso) {
+  const t = new Date(iso).getTime();
+  const now = Date.now();
+  const sec = Math.max(1, Math.floor((now - t) / 1000));
+  if (sec < 60)  return sec + "s ago";
+  const min = Math.floor(sec / 60);
+  if (min < 60) return min + "m ago";
+  const hr  = Math.floor(min / 60);
+  if (hr < 24)  return hr + "h ago";
+  const d   = Math.floor(hr / 24);
+  if (d < 7)    return d + "d ago";
+  return new Date(iso).toLocaleDateString(undefined, { month:"short", day:"numeric" });
+}
+function clockTime(iso) {
+  return new Date(iso).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+}
+
+/* ======================================================
+   GMAIL → FEED
+   ====================================================== */
+const GMAIL_TOOL = "mcp__a8cc7982-6ac6-451f-b1f0-9d501c39ec54__search_threads";
+const SESSION_LIST_TOOL = "mcp__session_info__list_sessions";
+const SESSION_READ_TOOL = "mcp__session_info__read_transcript";
+
+/* ------------------------------------------------------
+   MCP response unwrapping.
+   Tools may return: a raw JSON object, a raw string, an
+   MCP content array { content: [{type:"text",text:"..."}] },
+   or { text: "..." }. Normalize to either an object (if JSON)
+   or a plain string.
+   ------------------------------------------------------ */
+function unwrapMcp(res) {
+  if (res == null) return res;
+  let candidate = res;
+
+  // MCP content array shape
+  if (typeof res === "object" && Array.isArray(res.content)) {
+    candidate = res.content.map(c => (c && c.text) ? c.text : "").join("\n");
+  } else if (typeof res === "object" && typeof res.text === "string") {
+    candidate = res.text;
+  }
+
+  // If the candidate is a string that looks like JSON, parse it
+  if (typeof candidate === "string") {
+    const trimmed = candidate.trim();
+    if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+      try { return JSON.parse(trimmed); } catch { /* fall through */ }
+    }
+    return candidate;
+  }
+  return candidate;
+}
+
+function withTimeout(promise, ms, label) {
+  let to;
+  const timer = new Promise((_, rej) => {
+    to = setTimeout(() => rej(new Error("Timeout after " + ms + "ms calling " + label)), ms);
+  });
+  return Promise.race([promise, timer]).finally(() => clearTimeout(to));
+}
+
+async function callMcp(name, args) {
+  setStep(name, "calling…");
+  const bridge = window.__bridge || window.cowork;
+  if (!bridge) {
+    throw new Error("Bridge not initialized");
+  }
+  const fn = bridge.callMcpTool || bridge.callTool;
+  if (typeof fn !== "function") {
+    throw new Error("Bridge has no callMcpTool/callTool. Bridge keys: " + Object.keys(bridge).join(", "));
+  }
+  const raw = await withTimeout(fn.call(bridge, name, args), 30000, name);
+  setStep(name, "ok");
+  return unwrapMcp(raw);
+}
+
+/* Step indicator — shows progress on the status line and inside both panels */
+const Steps = {};
+function setStep(key, state) {
+  Steps[key] = state;
+  const line = Object.entries(Steps).map(([k, v]) => {
+    const short = k.replace(/^mcp__/,"").replace(/^[^_]+__/,"").replace(/_/g," ");
+    return short + ": " + v;
+  }).join("  ·  ");
+  const sl = document.getElementById("status-line");
+  if (sl) sl.textContent = line || "starting…";
+}
+
+function showError(targetId, msg) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  el.innerHTML = `<div class="empty" style="text-align:left; padding:18px;">
+    <div style="color:#c2306a; font-weight:700; margin-bottom:6px;">⚠ Couldn't load</div>
+    <div style="font-size:12px; color:var(--ink-soft); white-space:pre-wrap; word-break:break-word;">${escapeHTMLLite(msg)}</div>
+    <div style="font-size:11px; color:var(--ink-mute); margin-top:10px;">Click the Reload button in the header above to retry.</div>
+  </div>`;
+}
+function escapeHTMLLite(s) {
+  return String(s || "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+}
+
+const FEED_QUERY = "(crypto OR blockchain OR stablecoin OR bitcoin OR ethereum OR tokeniz OR defi OR fintech OR \"digital asset\" OR \"central bank\" OR CBDC OR regulat) newer_than:3d -in:trash -in:draft";
+
+function cleanSender(raw) {
+  if (!raw) return "";
+  const m = raw.match(/^"?([^"<]+?)"?\s*<.+>$/);
+  if (m) return m[1].trim();
+  const m2 = raw.match(/^([^@]+)@(.+)$/);
+  if (m2) {
+    const dom = m2[2].split(".")[0];
+    return dom.charAt(0).toUpperCase() + dom.slice(1);
+  }
+  return raw;
+}
+
+function decodeSnippet(s) {
+  if (!s) return "";
+  const t = document.createElement("textarea");
+  t.innerHTML = s;
+  // Strip Gmail's invisible padding using explicit Unicode escapes.
+  // \u034F = combining grapheme joiner ; \u200B-\u200F = ZW chars / direction marks
+  // \u2060-\u206F = word joiner / invisible operators ; \uFEFF = BOM ; \u00AD = soft hyphen
+  return t.value
+    .replace(/[\u034F\u200B-\u200F\u2060-\u206F\uFEFF\u00AD]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+async function loadFeed() {
+  let errMsg = null;
+  try {
+    const res = await callMcp(GMAIL_TOOL, {
+      query: FEED_QUERY,
+      pageSize: 40,
+    });
+    console.log("[feed] gmail response shape:", res);
+
+    // Some MCP wrappers return { threads: [...] }, others may return [...] directly,
+    // or { result: { threads: [...] } }.
+    let threads = null;
+    if (res && Array.isArray(res.threads)) threads = res.threads;
+    else if (Array.isArray(res)) threads = res;
+    else if (res && res.result && Array.isArray(res.result.threads)) threads = res.result.threads;
+    else if (typeof res === "string") {
+      // Last-ditch: try to parse as JSON
+      try {
+        const j = JSON.parse(res);
+        threads = j.threads || (Array.isArray(j) ? j : []);
+      } catch { threads = []; }
+    } else {
+      threads = [];
+    }
+
+    if (!threads.length) {
+      errMsg = "Gmail returned no matching threads.\n\nResponse type: " + typeof res +
+        (res && typeof res === "object"
+          ? "\nKeys: " + Object.keys(res).join(", ")
+          : "\nPreview: " + String(res).slice(0, 200));
+    }
+
+    const items = [];
+    for (const t of threads) {
+      const msgs = t.messages || [];
+      if (!msgs.length) continue;
+      const m = msgs[0];
+      const subject = (m.subject || "").trim();
+      if (!subject) continue;
+      if (/^(re:|fwd:)\s/i.test(subject)) continue;
+
+      const cat = categorize(subject, m.snippet || "", m.sender || "");
+      items.push({
+        id: m.id || t.id,
+        threadId: t.id,
+        subject,
+        sender: cleanSender(m.sender),
+        snippet: decodeSnippet(m.snippet).slice(0, 280),
+        date: m.date,
+        cat,
+        url: "https://mail.google.com/mail/u/0/#inbox/" + (t.id),
+      });
+    }
+    const seen = new Set();
+    State.feed = items.filter(x => {
+      const k = x.subject.toLowerCase();
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+    State.feed.sort((a, b) => new Date(b.date) - new Date(a.date));
+  } catch (e) {
+    console.error("feed load failed", e);
+    errMsg = (e && e.message) ? e.message : String(e);
+    State.feed = [];
+  }
+
+  if (!State.feed.length && errMsg) {
+    showError("feed", errMsg);
+    document.getElementById("status-line").textContent = "Feed unavailable";
+  } else {
+    renderFeed();
+    renderTicker();
+    updateStatus();
+  }
+}
+
+/* ======================================================
+   BRIEFING → from latest "Daily brief" session transcript
+   ====================================================== */
+async function loadBriefing() {
+  let errMsg = null;
+  try {
+    const sessions = await callMcp(SESSION_LIST_TOOL, { limit: 20 });
+    console.log("[brief] sessions response shape:", sessions);
+
+    // Normalize sessions into a list of {id, title}
+    let sessionList = [];
+    if (typeof sessions === "string") {
+      const lines = sessions.split("\n");
+      for (const line of lines) {
+        const m = line.match(/-\s+(local_[a-f0-9-]+)\s+"([^"]+)"/i);
+        if (m) sessionList.push({ id: m[1], title: m[2] });
+      }
+      if (!sessionList.length) {
+        // Try a looser match in case id format differs
+        for (const line of lines) {
+          const m = line.match(/(local_[A-Za-z0-9-]+)[^"]*"([^"]+)"/);
+          if (m) sessionList.push({ id: m[1], title: m[2] });
+        }
+      }
+    } else if (Array.isArray(sessions)) {
+      sessionList = sessions.map(s => ({
+        id: s.session_id || s.id || s.sessionId || "",
+        title: s.title || s.name || "",
+      })).filter(s => s.id);
+    } else if (sessions && Array.isArray(sessions.sessions)) {
+      sessionList = sessions.sessions.map(s => ({
+        id: s.session_id || s.id, title: s.title || "",
+      })).filter(s => s.id);
+    }
+
+    if (!sessionList.length) {
+      errMsg = "Could not parse session list.\n\nResponse type: " + typeof sessions +
+        "\nPreview: " + String(typeof sessions === "object" ? JSON.stringify(sessions) : sessions).slice(0, 300);
+      State.brief = { note: "", themes: [], date: "" };
+      throw new Error(errMsg);
+    }
+
+    const briefSess = sessionList.find(s => /brief/i.test(s.title)) || sessionList[0];
+
+    const transcript = await callMcp(SESSION_READ_TOOL, {
+      session_id: briefSess.id,
+      limit: 8,
+      format: "auto",
+      max_wait_seconds: 0,
+    });
+    console.log("[brief] transcript response shape:", typeof transcript, transcript && (typeof transcript === "string" ? transcript.length + " chars" : Object.keys(transcript)));
+
+    let text = "";
+    if (typeof transcript === "string") {
+      text = transcript;
+    } else if (transcript && typeof transcript.transcript === "string") {
+      text = transcript.transcript;
+    } else if (transcript && Array.isArray(transcript.messages)) {
+      text = transcript.messages.map(m => (m.text || m.content || "")).join("\n\n");
+    } else {
+      text = JSON.stringify(transcript);
+    }
+
+    if (!/Morning Brief/i.test(text)) {
+      errMsg = "Found session \"" + briefSess.title + "\" but its transcript doesn't contain a 'Morning Brief' header yet.\n\nThis can happen if the scheduled task is still running, or if the most recent brief is in a different session.\n\nPreview: " + text.slice(0, 240);
+    }
+
+    State.brief = parseBriefing(text);
+    if (!State.brief.themes.length && !errMsg) {
+      errMsg = "Briefing text found but no theme sections (### headers) could be parsed.";
+    }
+  } catch (e) {
+    console.error("briefing load failed", e);
+    errMsg = errMsg || ((e && e.message) ? e.message : String(e));
+    State.brief = State.brief || { note: "", themes: [], date: "" };
+  }
+
+  if ((!State.brief || !State.brief.themes.length) && errMsg) {
+    showError("briefing", errMsg);
+  } else {
+    renderBriefing();
+  }
+}
+
+/* Parse the markdown briefing text into structured data */
+function parseBriefing(text) {
+  // Find the most recent "Morning Brief — " header in the transcript
+  // The transcript may include multiple Claude responses
+  const briefStart = text.lastIndexOf("Morning Brief");
+  const slice = briefStart >= 0 ? text.slice(briefStart) : text;
+
+  // Extract date from header
+  let date = "";
+  const dateMatch = slice.match(/Morning Brief\s*[—-]\s*([^*\n]+?)(\*\*|\n)/);
+  if (dateMatch) date = dateMatch[1].trim();
+
+  // Editor's note: paragraph after the header, before the first --- or ###
+  let note = "";
+  const noteMatch = slice.match(/Morning Brief[^*]*\*\*\s*\n+([\s\S]*?)(?:\n---|\n###)/);
+  if (noteMatch) {
+    note = noteMatch[1].trim()
+      .replace(/^\n+/, "")
+      .replace(/\*\*([^*]+)\*\*/g, "$1")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  // Find theme sections: lines starting with "### "
+  const themes = [];
+  const themeRegex = /###\s+([^\n]+)\n([\s\S]*?)(?=\n###\s|$)/g;
+  let m;
+  while ((m = themeRegex.exec(slice)) !== null) {
+    const themeTitle = m[1].trim();
+    const body = m[2];
+    // Stop at the calendar / "Your Day" section
+    if (/your day|^📅/i.test(themeTitle)) continue;
+
+    const stories = [];
+    // Headline pattern: **⚡⚡ [headline](url)** OR **⚡⚡⚡ [headline](url)**
+    const storyRegex = /\*\*(⚡+)\s*\[([^\]]+?)\]\(([^)]+?)\)[^\n]*?\*\*/g;
+    let s;
+    while ((s = storyRegex.exec(body)) !== null) {
+      stories.push({
+        score: s[1].length,
+        text: s[2].trim(),
+        url: s[3].trim(),
+        kind: "main",
+      });
+    }
+
+    // Plain bold headlines without hyperlink (e.g., upcoming reports)
+    const plainRegex = /\*\*(⚡+)\s*([^[\n][^\n]*?)\*\*/g;
+    let p;
+    while ((p = plainRegex.exec(body)) !== null) {
+      // Skip if it was already captured by storyRegex
+      if (p[2].includes("[") || p[2].includes("](")) continue;
+      stories.push({
+        score: p[1].length,
+        text: p[2].trim(),
+        url: null,
+        kind: "main",
+      });
+    }
+
+    // "Also noted" section
+    const alsoMatch = body.match(/\*Also noted:\*\s*([\s\S]*?)(?=\n📐|\n###|$)/);
+    if (alsoMatch) {
+      stories.push({ kind: "also", html: renderInlineMarkdown(alsoMatch[1].trim()) });
+    }
+
+    if (stories.length) themes.push({ title: themeTitle, stories });
+  }
+
+  return { date, note, themes };
+}
+
+function escapeHTML(s) {
+  return (s || "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+  }[c]));
+}
+
+/* Render minimal inline markdown for "Also noted" sentences: [text](url) → link */
+function renderInlineMarkdown(s) {
+  return escapeHTML(s)
+    .replace(/\[([^\]]+?)\]\(([^)]+?)\)/g, (_, t, u) =>
+      `<a href="${u}" target="_blank" rel="noopener">${t}</a>`)
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\s+/g, " ").trim();
+}
+
+/* ======================================================
+   RENDER
+   ====================================================== */
+function renderBriefing() {
+  const el = document.getElementById("briefing");
+  if (!State.brief) return;
+  const { date, note, themes } = State.brief;
+
+  if (date) document.getElementById("brief-date").textContent = date;
+  if (themes.length) {
+    document.getElementById("brief-sub").textContent =
+      themes.reduce((n, t) => n + t.stories.length, 0) + " stories · " + themes.length + " themes";
+  }
+
+  if (!themes.length) {
+    el.innerHTML = `<div class="empty">No briefing found yet today.<br>Your scheduled 8 AM brief will populate this panel.</div>`;
+    return;
+  }
+
+  let html = "";
+  if (note) {
+    html += `<div class="editor-note">
+      <span class="label">Editor's Note</span>
+      ${escapeHTML(note)}
+    </div>`;
+  }
+
+  themes.forEach((th, idx) => {
+    const open = idx < 4 ? "" : " collapsed";
+    html += `<div class="theme${open}" data-idx="${idx}">
+      <div class="theme-head">
+        <div class="name">${escapeHTML(th.title)}</div>
+        <div class="count">${th.stories.filter(s => s.kind === "main").length}</div>
+        <div class="chev">▾</div>
+      </div>
+      <div class="stories">
+        ${th.stories.map(s => {
+          if (s.kind === "also") {
+            return `<div class="story"><div class="also"><strong>Also noted:</strong> ${s.html}</div></div>`;
+          }
+          const scoreStr = "⚡".repeat(s.score);
+          if (s.url) {
+            return `<div class="story">
+              <span class="score">${scoreStr}</span>
+              <a class="headline" href="${s.url}" target="_blank" rel="noopener">${escapeHTML(s.text)}</a>
+            </div>`;
+          }
+          return `<div class="story">
+            <span class="score">${scoreStr}</span>
+            <span class="headline">${escapeHTML(s.text)}</span>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>`;
+  });
+
+  el.innerHTML = html;
+
+  // Toggle theme collapse — and keep the "Collapse all / Expand all" label in sync
+  el.querySelectorAll(".theme-head").forEach(h => {
+    h.addEventListener("click", () => {
+      h.parentElement.classList.toggle("collapsed");
+      updateCollapseButton();
+    });
+  });
+  updateCollapseButton();
+}
+
+function renderFeed() {
+  const el = document.getElementById("feed");
+  // Compute counts per category
+  const counts = { all: State.feed.length, inst:0, stable:0, token:0, reg:0, defi:0, macro:0, other:0 };
+  for (const item of State.feed) counts[item.cat] = (counts[item.cat] || 0) + 1;
+  for (const k of Object.keys(counts)) {
+    const elN = document.getElementById("n-" + k);
+    if (elN) elN.textContent = counts[k];
+  }
+
+  const visible = State.activeCat === "all"
+    ? State.feed
+    : State.feed.filter(x => x.cat === State.activeCat);
+
+  if (!visible.length) {
+    el.innerHTML = `<div class="empty">No recent stories in this category.<br>Try another tab or reload in a few minutes.</div>`;
+    return;
+  }
+
+  el.innerHTML = visible.map(item => {
+    const meta = CAT_META[item.cat] || CAT_META.other;
+    return `<a class="feed-item" href="${item.url}" target="_blank" rel="noopener" title="Open in Gmail">
+      <div class="time">
+        ${clockTime(item.date)}
+        <span class="ago">${timeAgo(item.date)}</span>
+      </div>
+      <div class="body">
+        <div class="subject">${escapeHTML(item.subject)}</div>
+        <div class="meta">
+          <span class="source">${escapeHTML(item.sender)}</span>
+          <span class="cat ${meta.cls}">${meta.label}</span>
+        </div>
+        ${item.snippet ? `<div class="snippet">${escapeHTML(item.snippet)}</div>` : ""}
+      </div>
+      <div class="arrow">›</div>
+    </a>`;
+  }).join("");
+}
+
+function renderTicker() {
+  const track = document.getElementById("ticker-track");
+  if (!State.feed.length) return;
+  const top = State.feed.slice(0, 14);
+  const html = top.map(i =>
+    `<span class="item">
+       <span class="src">${escapeHTML(i.sender)}</span>
+       ${escapeHTML(i.subject)}
+       <span class="dot"></span>
+     </span>`
+  ).join("");
+  // Duplicate for seamless loop
+  track.innerHTML = html + html;
+}
+
+function updateStatus() {
+  const el = document.getElementById("status-line");
+  const now = new Date().toLocaleTimeString(undefined, { hour:"2-digit", minute:"2-digit" });
+  el.textContent = State.feed.length + " live stories · synced " + now;
+}
+
+/* ======================================================
+   TAB HANDLING
+   ====================================================== */
+function bindTabs() {
+  const tabs = document.querySelectorAll(".tab");
+  tabs.forEach(t => {
+    if (t.dataset.cat === State.activeCat) t.classList.add("active");
+    else t.classList.remove("active");
+
+    t.addEventListener("click", () => {
+      tabs.forEach(x => x.classList.remove("active"));
+      t.classList.add("active");
+      State.activeCat = t.dataset.cat;
+      localStorage.setItem("brief.activeCat", State.activeCat);
+      renderFeed();
+    });
+  });
+}
+
+/* ======================================================
+   INIT  (with diagnostics so we can see what's happening)
+   ====================================================== */
+window.addEventListener("error", function(ev) {
+  console.error("global error", ev);
+  const m = "JS error: " + (ev.error && ev.error.message ? ev.error.message : ev.message) +
+            (ev.filename ? "\nin " + ev.filename + ":" + ev.lineno : "");
+  showError("briefing", m);
+  showError("feed", m);
+});
+window.addEventListener("unhandledrejection", function(ev) {
+  console.error("unhandled rejection", ev);
+  const m = "Unhandled promise rejection: " + (ev.reason && ev.reason.message ? ev.reason.message : String(ev.reason));
+  showError("briefing", m);
+  showError("feed", m);
+});
+
+/* Locate the Cowork bridge by trying several plausible names and waiting
+   up to 8 seconds (some hosts inject it after the script tag runs). */
+async function findBridge() {
+  const NAMES = ["cowork", "Cowork", "__cowork__", "claude", "anthropic", "mcp", "host"];
+  const start = Date.now();
+  while (Date.now() - start < 8000) {
+    for (const n of NAMES) {
+      const obj = window[n];
+      if (obj && (typeof obj.callMcpTool === "function" ||
+                  typeof obj.callTool === "function" ||
+                  typeof obj.mcp === "object")) {
+        return { obj, name: n };
+      }
+    }
+    // Also check for the function directly on window
+    if (typeof window.callMcpTool === "function") {
+      return { obj: window, name: "window" };
+    }
+    await new Promise(r => setTimeout(r, 200));
+  }
+  return null;
+}
+
+function listWindowSuspects() {
+  // Find non-standard window globals so we can see what the host injected
+  const standard = new Set([
+    "0","1","2","3","window","self","top","parent","frames","frameElement",
+    "document","location","history","navigator","screen","performance","console",
+    "localStorage","sessionStorage","crypto","caches","origin","isSecureContext",
+    "fetch","XMLHttpRequest","WebSocket","Headers","Request","Response","URL",
+    "URLSearchParams","FormData","Blob","File","FileReader","alert","confirm","prompt",
+    "scrollTo","scrollBy","scroll","resizeTo","resizeBy","moveTo","moveBy","print",
+    "open","close","focus","blur","getComputedStyle","getSelection","matchMedia",
+    "requestAnimationFrame","cancelAnimationFrame","requestIdleCallback","cancelIdleCallback",
+    "setTimeout","clearTimeout","setInterval","clearInterval","queueMicrotask",
+    "innerWidth","innerHeight","outerWidth","outerHeight","scrollX","scrollY",
+    "pageXOffset","pageYOffset","devicePixelRatio","onload","onunload","onerror",
+    "name","status","closed","length","opener","screenLeft","screenTop","screenX","screenY",
+    "scrollbars","menubar","toolbar","locationbar","personalbar","statusbar",
+    "speechSynthesis","customElements","trustedTypes","reportError","structuredClone",
+    "atob","btoa","escape","unescape","encodeURI","decodeURI","encodeURIComponent","decodeURIComponent",
+    "parseInt","parseFloat","isNaN","isFinite","NaN","Infinity","undefined","globalThis",
+    "Math","Date","Number","String","Boolean","Array","Object","Function","RegExp",
+    "Promise","Symbol","Map","Set","WeakMap","WeakSet","JSON","Proxy","Reflect",
+    "Error","TypeError","RangeError","SyntaxError","ReferenceError","EvalError","URIError","AggregateError",
+    "Int8Array","Uint8Array","Uint8ClampedArray","Int16Array","Uint16Array","Int32Array",
+    "Uint32Array","Float32Array","Float64Array","BigInt","BigInt64Array","BigUint64Array",
+    "ArrayBuffer","SharedArrayBuffer","DataView","FinalizationRegistry","WeakRef","Intl",
+    "Element","HTMLElement","Node","Document","Event","CustomEvent","MessageEvent",
+    "MouseEvent","KeyboardEvent","TouchEvent","PointerEvent","WheelEvent","FocusEvent",
+    "DragEvent","ClipboardEvent","InputEvent","UIEvent","ProgressEvent","PageTransitionEvent",
+    "PopStateEvent","HashChangeEvent","StorageEvent","ErrorEvent","BeforeUnloadEvent",
+    "DOMException","DOMParser","XMLSerializer","TextEncoder","TextDecoder",
+    "CSS","CSSStyleDeclaration","CSSStyleSheet","CSSRule","CSSRuleList","StyleSheet","StyleSheetList",
+    "Image","Audio","Video","HTMLAudioElement","HTMLVideoElement","HTMLImageElement",
+    "WebGLRenderingContext","WebGL2RenderingContext","CanvasRenderingContext2D",
+    "AbortController","AbortSignal","ResizeObserver","IntersectionObserver","MutationObserver","PerformanceObserver",
+    "BroadcastChannel","MessageChannel","MessagePort","Worker","SharedWorker","ServiceWorker",
+    "Notification","PushManager","Geolocation","Gamepad","SpeechRecognition","SpeechSynthesisUtterance",
+    "indexedDB","IDBFactory","IDBDatabase","IDBObjectStore","IDBTransaction","IDBKeyRange",
+    "EventTarget","EventSource","NodeList","HTMLCollection","DOMTokenList","NamedNodeMap","Attr",
+    "Range","Selection","TreeWalker","NodeIterator","ShadowRoot","TemplateContent","DocumentFragment",
+    "MediaQueryList","MediaQueryListEvent","MediaList","DOMRect","DOMRectReadOnly","DOMPoint","DOMPointReadOnly","DOMMatrix","DOMMatrixReadOnly","DOMQuad","DOMStringList","DOMStringMap"
+  ]);
+  const out = [];
+  for (const k of Object.getOwnPropertyNames(window)) {
+    if (k.startsWith("HTML") || k.startsWith("SVG") || k.startsWith("CSS") ||
+        k.startsWith("webkit") || k.startsWith("on") || k.startsWith("WebKit") ||
+        standard.has(k)) continue;
+    let type = "?";
+    try { type = typeof window[k]; } catch {}
+    out.push(k + ":" + type);
+  }
+  return out;
+}
+
+/* Theme handling — apply preference before paint to avoid flash */
+function getPreferredTheme() {
+  const stored = localStorage.getItem("brief.theme");
+  if (stored === "light" || stored === "dark") return stored;
+  return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+}
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  const ic = document.getElementById("theme-icon");
+  const lb = document.getElementById("theme-label");
+  if (ic) ic.textContent = theme === "dark" ? "☾" : "☀";
+  if (lb) lb.textContent = theme === "dark" ? "Dark" : "Light";
+}
+function bindThemeToggle() {
+  const btn = document.getElementById("theme-toggle");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    localStorage.setItem("brief.theme", next);
+    applyTheme(next);
+  });
+}
+
+/* Collapse / expand all theme sections */
+function updateCollapseButton() {
+  const btn = document.getElementById("collapse-all");
+  const lbl = document.getElementById("cbtn-label");
+  if (!btn || !lbl) return;
+  const themes = document.querySelectorAll(".theme");
+  if (!themes.length) return;
+  // If ANY theme is currently expanded, the button collapses everything;
+  // otherwise it expands everything.
+  const anyOpen = Array.from(themes).some(t => !t.classList.contains("collapsed"));
+  if (anyOpen) {
+    btn.classList.remove("expanded");
+    lbl.textContent = "Collapse all";
+  } else {
+    btn.classList.add("expanded");
+    lbl.textContent = "Expand all";
+  }
+}
+function bindCollapseAll() {
+  const btn = document.getElementById("collapse-all");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const themes = document.querySelectorAll(".theme");
+    const anyOpen = Array.from(themes).some(t => !t.classList.contains("collapsed"));
+    themes.forEach(t => {
+      if (anyOpen) t.classList.add("collapsed");
+      else t.classList.remove("collapsed");
+    });
+    updateCollapseButton();
+  });
+}
+
+async function init() {
+  applyTheme(getPreferredTheme());
+  bindThemeToggle();
+  bindCollapseAll();
+  const sl = document.getElementById("status-line");
+  bindTabs();
+
+  // Briefing — parse the embedded markdown
+  try {
+    State.brief = parseBriefing(BRIEFING_MD);
+    renderBriefing();
+  } catch (e) {
+    console.error("brief render failed", e);
+    showError("briefing", "Failed to render brief: " + (e && e.message ? e.message : String(e)));
+  }
+
+  // Feed — use the embedded items directly
+  try {
+    State.feed = FEED_ITEMS.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+    renderFeed();
+    renderTicker();
+  } catch (e) {
+    console.error("feed render failed", e);
+    showError("feed", "Failed to render feed: " + (e && e.message ? e.message : String(e)));
+  }
+
+  // Status
+  const updated = GENERATED_AT ? new Date(GENERATED_AT) : null;
+  const updatedStr = updated ? updated.toLocaleString(undefined, {month:"short", day:"numeric", hour:"2-digit", minute:"2-digit"}) : "now";
+  if (sl) sl.textContent = State.feed.length + " stories · refreshed " + updatedStr;
+}
+
+// Defer to DOMContentLoaded
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
+</script>
+</body>
+</html>
