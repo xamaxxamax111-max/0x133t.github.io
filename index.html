@@ -681,94 +681,166 @@
    ====================================================== */
 
 /* ====== EMBEDDED DATA (refreshed by the 8 AM scheduled task) ====== */
-const BRIEFING_MD = `☀️ **Morning Brief — Saturday, May 16, 2026**
+const BRIEFING_MD = `☀️ **Morning Brief — Sunday, May 17, 2026**
 
-This week's news represents a structural inflection point rather than incremental progress: the US regulatory framework for digital assets is crystallising at the exact moment institutional infrastructure is becoming production-ready. The CLARITY Act's bipartisan Senate Banking Committee passage, Moody's first AAA rating on an ERC-20 tokenized fund, DTCC's Collateral AppChain timeline confirmation, and BlackRock's stablecoin yield product filings are converging signals that the institutional digital asset market is transitioning from pilot to deployment at scale. GSIBs that have been waiting for regulatory clarity before committing resources no longer have that excuse.
-
----
-
-### 🏦 Institutional Adoption & Market Structure
-
-**⚡⚡⚡⚡ [Charles Schwab opens spot BTC and ETH trading to 39 million accounts at 75bps, entering a retail crypto fee war that Morgan Stanley's E*Trade started one week earlier at 50bps.](https://substack.com/redirect/0091dfa1-b814-44c8-be1f-398541a63c56?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-Schwab Crypto launched May 13 with custody at Charles Schwab Premier Bank and Paxos providing sub-custody and execution. BTC and ETH appear alongside traditional holdings across all Schwab platforms. Morgan Stanley's E*Trade beat them to market on May 6 at 50bps across 8.6M accounts with BTC, ETH, and SOL — making Schwab's "lowest in the industry" claim outdated on day one. Robinhood remains effectively free via PFOF; Fidelity charges ~1%.
-- ***Why this matters:*** Two of the largest US retail brokerage platforms are now in a fee-compression race on crypto that mirrors the 2019 zero-commission equity trading collapse.
-
-**⚡⚡⚡ [CME Group plans to launch cash-settled, Nasdaq-backed crypto index futures on June 8, pending regulatory review.](https://substack.com/redirect/f4fbbdc4-9e41-450b-b998-6a266e3f8880?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-The product offers institutional investors regulated exposure to a basket of crypto assets via cash-settled futures on a Nasdaq-constructed index — no direct custody required.
-
-**⚡⚡⚡ [Strategy (formerly MicroStrategy) formally ends its "never sell" Bitcoin doctrine, establishing explicit sell triggers tied to preferred dividend obligations and NAV ratios.](https://substack.com/redirect/60370bda-d0e4-4d7c-b8be-bc58f0f00fa3?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-CEO Phong Le disclosed on the Q1 2026 earnings call that Strategy will sell BTC when more accretive to BPS than equity issuance, or to fund ~$1.5B in annual preferred dividend obligations on the STRC (11.5% coupon). Sell trigger activates at mNAV below 1.22x. Strategy has raised $8.5B through STRC in 10 months.
-
-**⚡⚡⚡ [Franklin Templeton and Kraken parent Payward announce a strategic partnership to bring tokenized equities and yield products to blockchain networks.](https://substack.com/redirect/273050f6-1e71-47ec-8454-53683f494358?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-The partnership routes institutional-grade tokenized products through Kraken's crypto-native distribution infrastructure, bypassing traditional GSIB distribution channels entirely.
-
-*Also noted:* [KDDI acquires 14.9% of Coincheck Group for $65M](https://substack.com/redirect/6a0a92ea-c94e-4c1f-9237-67593f7a0528?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [21Shares launches first US spot Hyperliquid ETF (THYP) on Nasdaq](https://substack.com/redirect/c0f7dd18-e712-407f-8524-de7bd876f361?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Elliptic raises $120M Series D at $670M valuation](https://substack.com/redirect/796649a8-3f27-4c33-8cc1-a2c88d1ffd23?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [MARA sold 20,880 BTC (~$1.5B) in Q1](https://substack.com/redirect/c5602bcc-859d-4730-ae7f-55c8dd8f66b3?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
-
----
-
-### 💵 Stablecoins & Payments
-
-**⚡⚡⚡⚡⚡ [BlackRock files two SEC products engineered to capture stablecoin reserve yield that the GENIUS Act prohibits issuers from paying to holders, building a vertical integration from reserve manager to on-chain cash product manufacturer.](https://substack.com/redirect/10d1be95-d5d0-4315-877f-edc5de1ab5ba?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-On May 8, BlackRock filed the BRSRV (BlackRock Daily Reinvestment Stablecoin Reserve Vehicle) — a 2a-7-aligned fund holding sub-93-day Treasuries and overnight repos, with "OnChain Shares" across permissioned public blockchains via Securitize ($3M minimum). Simultaneously, it added an on-chain ERC-20 share class to its $7B Select Treasury Based Liquidity Fund via BNY Mellon as transfer agent on Ethereum.
-
-**⚡⚡⚡⚡ [Circle's Q1 2026 results expose a structural margin squeeze from the Coinbase revenue share, triggering a pivot from stablecoin issuer to blockchain infrastructure company via the ARC token and stablecoin-native L1.](https://substack.com/redirect/02886228-0bc4-4e08-96f2-8c0cdbf34b04?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-Circle reported $694M total revenue (+20% YoY) but net income fell 15% to $55M as distribution costs hit $407M. ARC presale of 740M tokens at $0.30 to consortium including a16z, Apollo, BlackRock, Standard Chartered Ventures, Janus Henderson, Marshall Wace, SBI, and ICE.
-
-**⚡⚡⚡ [Macro strategist Brent Johnson of Santiago Capital argues dollar-backed stablecoins are functioning as a geopolitical instrument of dollar dominance, mechanically creating structural demand for US Treasuries.](https://www.51insights.xyz/p/de-dollarization-is-dead-with-brent)**
-Johnson contends stablecoins are "re-dollarizing the world from the bottom up" — providing permissionless dollar access while requiring reserve purchases of short-term US Treasuries.
-
-*Also noted:* [Anchorage Digital + Grupo Salinas partner for cross-border payments using federally regulated stablecoins](https://substack.com/redirect/707f9665-1c83-415d-a171-7ffd52761d64?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Privy integrates with Stripe Terminal for in-person stablecoin payments via Tap to Pay](https://substack.com/redirect/3bf0ecce-2524-4e83-8806-d3fbbe13c497?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Paybis secures both MiCA CASP and PSD2 licenses from Latvia's central bank](https://substack.com/redirect/b0306305-c459-4b97-8ee4-7139cc2db293?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
-
----
-
-### 🔗 Tokenization of Real-World Assets
-
-**⚡⚡⚡⚡⚡ [Moody's assigns AAA-mf to FILQ, an ERC-20 tokenized money market fund from Fidelity International — the first time the agency has rated a blockchain-native fund at parity with Goldman Sachs and JPMorgan's traditional MMFs.](https://substack.com/redirect/9eff61b4-5740-480e-89c9-bc54557fedac?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-FILQ is a USD liquidity fund issued via Sygnum Bank's Desygnate tokenization platform, holding short-dated government securities and mirroring Fidelity's $7B Irish-domiciled LVNAV MMF. Launches with ~$10M on-chain AUM; 24/7 stablecoin-funded subscriptions; no CUSIPs or transfer agents.
-
-**⚡⚡⚡⚡⚡ [DTCC confirms its Collateral AppChain is on track for Q4 2026 production, with independent modeling showing a single institution moving 25% of its book onto the platform freeing $1.9B in capital by year three.](https://substack.com/redirect/e788f208-9549-4b16-9fc3-72f308604855?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-AppChain built on Chainlink infrastructure, providing a shared ledger across BNY, JPMorgan, Euroclear, and Clearstream. Joint whitepaper with Finadium released May 13.
-
-**⚡⚡⚡⚡ [JPMorgan files a competing tokenized money market fund (JLTXX) for stablecoin reserves, entering the same product category as BlackRock's BRSRV in a race to own on-chain institutional cash.](https://substack.com/redirect/59fdff3a-b7a9-4873-b920-f8d07ddc8dab?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-Filing positions JPMorgan's onchain liquidity infrastructure as a primary vehicle for institutional stablecoin reserve management post-GENIUS Act.
-
-**⚡⚡⚡⚡ BCG's flagship "Future of Digital Assets" report — projecting tokenized RWAs at $88T (16% of global investable assets) by 2035 — releases Monday via 51 Insights with free download.**
-Key projected figures: tokenized RWAs at $88T by 2035; stablecoins plateauing at ~$9T (15% of M2). 68-page report covering Board, CRO, CTO, and ExCo perspectives.
-
-**⚡⚡⚡ [Broadridge expands its tokenization engine to support equities, funds, alternative assets, and money market instruments on a single multi-asset platform.](https://substack.com/redirect/fe4996d5-92ef-48b2-ac67-43d4e1700cfb?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-
-*Also noted:* [Animoca Brands and Nuva Labs launch NUVA marketplace connecting $19B tokenized RWAs to DeFi liquidity](https://substack.com/redirect/f33d7a76-0aae-4615-8867-7dbe8d969e9e?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
-
----
-
-### 🛠️ Technology & Infrastructure
-
-**⚡⚡⚡ [DTCC selects Chainlink as the infrastructure and data standards provider for the Collateral AppChain, cementing Chainlink as the oracle and connectivity layer for institutional blockchain infrastructure at market-structure scale.](https://substack.com/redirect/e788f208-9549-4b16-9fc3-72f308604855?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
-
-*Also noted:* [Pepperstone deploys Fireblocks for custody, compliance, and DeFi execution](https://substack.com/redirect/c03a4466-0eba-42f2-9a8e-9955f6eb3473?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
-
----
-
-### 📊 Markets & Macro
-
-**⚡⚡⚡ [Gold crossing $5,000 and the DXY holding near 99.66 simultaneously validate a macro framework in which dollar-denominated stablecoins — not de-dollarization — define the next phase of global monetary dynamics.](https://www.51insights.xyz/p/de-dollarization-is-dead-with-brent)**
-Santiago Capital's Brent Johnson notes both his original 2018 price targets have now materialized: gold at $5,000 (~400% return) and dollar relative strength.
+*Editor's note:* Washington just delivered the single biggest piece of U.S. crypto market-structure legislation in history: the CLARITY Act cleared Senate Banking 15-9 on May 14 with the major bank lobbies actively negotiating *terms* rather than opposing. In parallel, the tokenization wedge moved from "pilot" to "rated product": Moody's gave a tokenized Fidelity money market fund a AAA-mf rating — the same grade it gives JPMorgan and Goldman MMFs — while BlackRock filed a 2a-7 on-chain reserve vehicle (BRSRV) explicitly designed to capture the yield the GENIUS Act stripped from stablecoin holders. Note: BCG's "Future of Digital Assets" flagship report drops tomorrow (May 18) per 51 Insights; full coverage will appear in tomorrow's brief.
 
 ---
 
 ### 🏛️ Regulation & Policy
 
-**⚡⚡⚡⚡⚡ [The CLARITY Act advances through the US Senate Banking Committee 15-9 in a bipartisan vote, with six major bank trade associations publicly shifting from opposition to negotiation.](https://www.veradiverdict.com/p/a-landmark-win-for-crypto)**
-The 309-page bill draws SEC/CFTC jurisdictional lines, introduces a 49% beneficial ownership decentralization test, prohibits interest-equivalent stablecoin yield payments, provides developer safe harbors, and creates insolvency safe harbors enabling institutional prime brokerage and clearing. ABA, BPI, Consumer Bankers Association, the Forum, ICBA, and NBA jointly stated support.
+**⚡⚡⚡⚡⚡ [CLARITY Act clears Senate Banking Committee 15-9 with bipartisan support; six bank trade associations endorse rather than oppose](https://www.veradiverdict.com/p/a-landmark-win-for-crypto)**
+On May 14, 2026, the Senate Banking Committee advanced the Digital Asset Market Clarity Act 15-9, with Sens. Ruben Gallego (D-AZ) and Angela Alsobrooks (D-MD) joining all Republicans. The 309-page revised text (May 12) draws SEC/CFTC jurisdictional lines via a "coordinated control" decentralization test (49% beneficial ownership threshold), carves out validators, sequencers, oracle providers and developers from money-transmitter status (Title VI BRCA preserved), prohibits stablecoin issuers from paying interest "economically equivalent to bank deposit interest" while permitting activity-based rewards (Tillis-Alsobrooks compromise), and extends bankruptcy safe harbors to digital commodity transactions (Title VII).
+- ***Why this matters:*** This is the legal predicate for institutional prime brokerage, custody, and clearing in digital commodities — the exact infrastructure layer a GSIB's blockchain team needs to scale beyond pilots. The joint endorsement by ABA, BPI, CBA, the Forum, ICBA and NBA signals the U.S. banking lobby has moved from defense to negotiating coupon mechanics. The Title IV banking innovation provisions (joint rulemaking on capital, margining, netting for digital asset activities) directly determine whether a bank can custody and lend against tokenized assets on the same balance sheet — start scenario-planning the capital treatment now, before the joint rulemaking begins.
 
-**⚡⚡⚡⚡ [Kevin Warsh, a known crypto advocate, is confirmed as the new Federal Reserve Chair, shifting the Fed's posture on digital assets at the most senior level.](https://substack.com/redirect/ce7f90a0-34e4-445f-8b08-9616a8d64fe5?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+**⚡⚡⚡⚡ [Bank of England formally classifies stablecoins as a "new form of money" alongside e-money and tokenized deposits](https://substack.com/redirect/c1c52fb2-c0c0-49ed-a714-5f12ae4ac4b4?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+The BoE clarified its regulatory posture, treating systemic sterling-denominated stablecoins on par with tokenized deposits and e-money for prudential purposes. This formalizes the trajectory of the UK's stablecoin regime under the Financial Services and Markets Act framework.
+- ***Why this matters:*** For a GSIB with UK operations, this collapses the regulatory arbitrage between issuing a tokenized deposit and supporting a third-party stablecoin — both are now "money" with similar oversight. That tilts the build-vs-partner calculation on sterling stablecoin issuance toward in-house issuance, since the prudential cost is largely equivalent but the deposit franchise and float economics stay on the bank's balance sheet. Expect the ECB and EBA to converge on similar language under MiCA Phase 2.
 
-**⚡⚡⚡⚡ [The Bank of England formally classifies stablecoins as a "new form of money" on par with e-money and tokenized deposits.](https://substack.com/redirect/c1c52fb2-c0c0-49ed-a714-5f12ae4ac4b4?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+**⚡⚡⚡⚡ [Kevin Warsh confirmed as Fed Chair, signaling continuity for pro-crypto monetary leadership](https://substack.com/redirect/ce7f90a0-34e4-445f-8b08-9616a8d64fe5?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+Warsh — publicly favorable to digital assets and skeptical of central bank balance-sheet expansion — was confirmed as Fed Chair. Markets read this as removing a key tail risk on master account access and digital asset banking guidance.
+- ***Why this matters:*** The Fed Chair sets the tone on SR 23-8 successor guidance, novel-activity supervision, and Fedwire access for narrow-purpose banks. A Warsh Fed makes it materially more likely that banks can pursue tokenized deposit and stablecoin reserve mandates without supervisory friction — which directly affects whether the bank's blockchain team can stand up Tier 1 custody and reserves servicing without an enforcement chill.
 
-*Also noted:* [CFTC files amicus brief in KalshiEx LLC v. Schuler seeking federal preemption over state gambling regulation](https://substack.com/redirect/14320e34-7e20-481c-8dbc-1af95505456f?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Arkham publishes on-chain map of Tron wallets tied to Iran's central bank](https://substack.com/redirect/712437cb-6542-4920-9b52-79f0ff4cba0b?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Vietnam signals regulated domestic crypto market could launch as early as Q3 2026](https://substack.com/redirect/0b5419db-e3bc-4f2a-b654-e1f9dd3624d5?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI); [Bhutan's Gelephu Mindfulness City launches accelerated licensing for globally regulated crypto firms](https://substack.com/redirect/7d519c4f-c46c-4d5a-9f90-229fded4b8ab?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
+**⚡⚡⚡ [CFTC files amicus brief seeking federal preemption of state gambling regulation over prediction markets in Kalshi v. Schuler](https://substack.com/redirect/14320e34-7e20-481c-8dbc-1af95505456f?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+On May 12, the CFTC filed in the U.S. Court of Appeals for the Sixth Circuit (No. 26-3196), arguing sports event contracts on CFTC-registered exchanges are federally preempted. The Third Circuit has already ruled in that direction.
+- ***Why this matters:*** A Sixth Circuit affirmation would federalize event-contract markets nationwide, which matters for any GSIB exploring exchange clearing, prime brokerage, or derivatives infrastructure for crypto-native venues. Prediction market venues are increasingly settlement layers for crypto-native risk; locked-in CFTC jurisdiction means the bank's commodities desk — not the legal team — owns the product strategy.
+
+*Also noted:* Vietnam's Deputy Minister of Finance signaled a regulated domestic crypto market could launch as soon as [Q3 2026](https://substack.com/redirect/0b5419db-e3bc-4f2a-b654-e1f9dd3624d5?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI). Bhutan's Gelephu Mindfulness City unveiled an [accelerated licensing and banking framework](https://substack.com/redirect/7d519c4f-c46c-4d5a-9f90-229fded4b8ab?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI) for crypto firms already regulated in major hubs.
+
+📐 **Data Spotlight**
+
+- CLARITY Act vote: 15-9 in Senate Banking; House passed the prior version 294-134 in July 2025 (*Pantera / veradiverdict*).
+- Six bank trade associations (ABA, BPI, Consumer Bankers Association, the Forum, ICBA, NBA) endorse CLARITY pending stablecoin-yield tightening (*51 Insights*).
+- "Coordinated control" decentralization test: 49% beneficial ownership threshold for commodity-token classification (*CLARITY Act, May 12 text*).
+- Bill length: 309 pages, structured across 9 titles (*veradiverdict*).
+
+---
+
+### 🔗 Tokenization of Real-World Assets
+
+**⚡⚡⚡⚡⚡ [Moody's awards AAA-mf rating to Fidelity International's tokenized money market fund FILQ — first ERC-20 to receive the same grade as Goldman/JPMorgan MMFs](https://substack.com/redirect/9eff61b4-5740-480e-89c9-bc54557fedac?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+FILQ, a USD liquidity fund issued through Sygnum Bank's [Desygnate](https://substack.com/redirect/c56ed19b-59ee-465a-95c8-2cabdad3b660?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI) platform, mirrors Fidelity's Irish-domiciled $7B LVNAV MMF, holds short-dated government securities, and starts with ~$10M on-chain AUM. It settles via smart contract with 24/7 stablecoin-funded subscriptions — no CUSIPs, no transfer agents, no end-of-day NAV strike. Currently restricted to non-US institutional investors.
+- ***Why this matters:*** This is the single most important institutional unlock since BUIDL. Allocator investment policies that previously blocked "blockchain-native assets" can now cite the same Moody's methodology used for the bank's own Treasury MMFs. For a GSIB, this changes the cost of distribution: tokenized fund shares can sit in the same risk bucket as the underlying MMF, which collapses the capital and reporting overhead for tokenized cash management products. Move quickly on a comparable AAA-rated wrapper — Sygnum and Desygnate just defined the institutional benchmark, and every tokenized MMF launched after this will be measured against it.
+
+**⚡⚡⚡⚡⚡ [BlackRock files for BRSRV — a 2a-7-aligned on-chain reserve vehicle explicitly designed to capture stablecoin reserve yield post-GENIUS Act](https://substack.com/redirect/10d1be95-d5d0-4315-877f-edc5de1ab5ba?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+On May 8, BlackRock filed two SEC post-effective amendments: (1) BRSRV — BlackRock Daily Reinvestment Stablecoin Reserve Vehicle — holding cash, sub-93-day Treasuries and overnight Treasury repos, with OnChain Shares across multiple public blockchains, $3M minimum, Securitize Transfer Agent recording ownership; (2) an on-chain share class for the existing $7B BlackRock Select Treasury Based Liquidity Fund with BNY Mellon as transfer agent on Ethereum (ERC-20). Both build on the BUIDL infrastructure launched March 2024.
+- ***Why this matters:*** The GENIUS Act forbids stablecoins from paying holder interest, but the reserves must sit in Treasuries/repos/2a-7 funds — that yield has to go somewhere. BlackRock has just built the canonical destination. Circle's Reserve Fund (USDXX) already runs ~$66B with ~90% managed by BlackRock; this filing operationalizes the workaround at the product level. For a GSIB, this defines the competitive frame on stablecoin reserves servicing: the bank either becomes a transfer agent / custodian for these vehicles (BNY Mellon is already doing it for the existing MMF share class) or it cedes the entire yield-bearing-stablecoin-adjacent fund channel to BlackRock+Securitize.
+
+**⚡⚡⚡⚡ [DTCC's Collateral AppChain on track for production Q4 2026; Finadium modeling projects $1.9B of capital freed at 25% adoption](https://substack.com/redirect/e788f208-9549-4b16-9fc3-72f308604855?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+On May 12, DTCC confirmed Q4 2026 production for the Collateral AppChain, a shared-ledger platform for collateral providers, receivers, triparty agents and custodians. A May 13 [Finadium whitepaper](https://substack.com/redirect/704b1e8e-c789-4e9d-b93e-b56adb6684ee?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI) models that a single institution moving 25% of its book onto the platform frees $1.9B in capital by year three plus another $225M from capital relocation. Chainlink is the announced data/infrastructure standard.
+- ***Why this matters:*** DTCC is solving the two largest collateral-management bottlenecks: weekday-only settlement windows and triparty silos (BNY, JPMorgan, Euroclear, Clearstream each run separate platforms). The AppChain doesn't replace them — it provides a shared settlement and reconciliation layer. For a GSIB, this is the closest analogue to a real "atomic mobilization" infrastructure that has appeared from a systemic post-trade utility. The blockchain team should be inside the working group now; the difference between being a Day-1 participant vs. integrating after launch is measured in basis points of intraday liquidity savings.
+
+**⚡⚡⚡⚡ [JPMorgan files competing tokenized money market fund (JLTXX) for stablecoin reserves](https://substack.com/redirect/59fdff3a-b7a9-4873-b920-f8d07ddc8dab?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+JPMorgan filed JLTXX, a tokenized MMF positioned for stablecoin-issuer reserves — directly competing with BlackRock's BRSRV and the existing BUIDL franchise. The product extends JPMorgan's Kinexys / Onyx-derived tokenization stack into the public chain reserve-asset competition.
+- ***Why this matters:*** The competitive line in stablecoin reserves servicing is now drawn between BlackRock+Securitize and JPMorgan+Kinexys. For any other GSIB, the strategic question is no longer *whether* to offer a tokenized reserve product, but *whose rails* to ride (BlackRock's Securitize stack, JPMorgan's Kinexys, or Sygnum/Desygnate) versus building proprietary. Time horizon on that decision is measured in weeks, not quarters.
+
+**⚡⚡⚡ [Broadridge expands core tokenization engine to support equities, funds, alternatives and money market instruments on a single platform](https://substack.com/redirect/fe4996d5-92ef-48b2-ac67-43d4e1700cfb?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+Broadridge consolidated its tokenization capabilities — previously fragmented across DLR (repo), securities issuance, and fund admin — into a single multi-asset engine.
+- ***Why this matters:*** Broadridge sits inside the post-trade workflows of nearly every major sell-side. A single-platform tokenization engine means the bank can pilot tokenized equity, fund, and alternatives issuance against its existing Broadridge vendor footprint rather than standing up a parallel stack. This compresses the time-to-market for tokenized custody products meaningfully.
+
+**⚡⚡⚡ [Franklin Templeton and Kraken parent Payward partner on tokenized equities and yield products](https://substack.com/redirect/273050f6-1e71-47ec-8454-53683f494358?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+Franklin Templeton — already a tokenized MMF leader with BENJI — partners with Payward to bring tokenized equities and yield products to blockchain networks, including via Kraken distribution.
+- ***Why this matters:*** This is the first marquee partnership marrying a top-10 asset manager's tokenization franchise to a global exchange's retail and institutional distribution. For a GSIB, it signals that tokenized share-class distribution will move outside traditional broker-dealer rails — wealth platforms that don't have an exchange-native distribution partner risk losing their position in the tokenized-fund flow.
+
+*Also noted:* Animoca Brands and Nuva Labs launched [NUVA, an Ethereum-based marketplace for $19B of tokenized RWAs](https://substack.com/redirect/f33d7a76-0aae-4615-8867-7dbe8d969e9e?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI) to DeFi. Watch for tomorrow: [BCG's flagship "Future of Digital Assets"](https://www.51insights.xyz/p/178-moodys-aaa-for-an-erc-20) report releases May 18 via 51 Insights with early access — key figures to watch: $88T tokenized RWA projection by 2035 (16% of global investable assets) and $9T stablecoin plateau (15% of M2).
+
+📐 **Data Spotlight**
+
+- FILQ AUM at launch: ~$10M on-chain, mirroring Fidelity's $7B Irish LVNAV MMF (*51 Insights / Sygnum*).
+- BlackRock BRSRV minimum investment: $3M (*BlackRock SEC filings, May 8 2026*).
+- BUIDL launched March 2024 — first BlackRock tokenized MMF (*51 Insights*).
+- DTCC Collateral AppChain: $1.9B capital freed + $225M from capital relocation per institution at 25% book adoption, year 3 (*DTCC / Finadium whitepaper, May 13 2026*).
+- BCG (forthcoming May 18): $88T tokenized RWA projection by 2035 = 16% of global investable assets; $9T stablecoin plateau = 15% of M2 absent monetary-regime change (*BCG via 51 Insights pre-release*).
+
+---
+
+### 🏦 Institutional Adoption & Market Structure
+
+**⚡⚡⚡⚡⚡ [Schwab opens spot BTC and ETH trading to ~39M retail accounts at 75bps via Paxos sub-custody](https://substack.com/redirect/96a4bc64-769b-4914-b18f-e9cb316b4d93?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+On May 13, Charles Schwab announced phased rollout of Schwab Crypto for eligible U.S. retail clients. Custody sits at [Charles Schwab Premier Bank, SSB](https://substack.com/redirect/28edb420-1f06-445e-aabe-6b1dec82af2b?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI) with [Paxos](https://substack.com/redirect/59d2448c-8a2c-4ebb-b09b-6823cd4bbcd8?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI) providing sub-custody and execution. Pricing: 75bps, below Fidelity (1%) but 50% above Morgan Stanley E*Trade (50bps). BTC/ETH viewable alongside traditional holdings across Schwab.com, Schwab Mobile and thinkorswim.
+- ***Why this matters:*** This is the consolidation of retail crypto distribution inside legacy wirehouses, not at crypto-native venues. Schwab + Morgan Stanley + Fidelity now have ~50M+ retail brokerage accounts with direct spot crypto access — and pricing is in active compression. For a GSIB's wealth business, the marginal client is already onboarded somewhere with a relationship; the strategic question is whether the bank's private wealth and digital advice channels can match 50-75bps execution before clients migrate AUM to the broker that does.
+
+**⚡⚡⚡⚡ [Morgan Stanley turned on E*Trade spot crypto (BTC/ETH/SOL) at 50bps on May 6, undercutting Schwab one week before its announcement](https://substack.com/redirect/14e6ab35-10ed-4324-9d6a-fccc5ec9a258?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+E*Trade's pilot launched at 50bps across BTC, ETH, and SOL on May 6 — including SOL alongside BTC/ETH, which Schwab's launch does not. E*Trade has 8.6M accounts.
+- ***Why this matters:*** Including SOL at launch is the strategically interesting move — Morgan Stanley is signaling that the "approved" L1 list is broader than the ETF-eligible duo. That sets a competitive bar on token coverage that other wirehouses (and bank brokerage units) will be pushed to match, which directly affects custody and surveillance tooling roadmaps.
+
+**⚡⚡⚡⚡ [Strategy (MSTR) formally ends the "never sell" doctrine; CEO Phong Le names mNAV 1.22x as the sell-trigger threshold](https://substack.com/redirect/60370bda-d0e4-4d7c-b8be-bc58f0f00fa3?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+On the Q1 2026 call (May 5) and a May 8 CNBC interview, CEO Phong Le formalized the conditions under which Strategy will sell BTC: (1) when sales are more accretive to Bitcoin-per-share than issuing equity to fund the Series A Perpetual Stretch Preferred (STRC, 11.5% coupon) dividend; (2) for tax-position harvesting. Le identified MSTR trading below book or mNAV below 1.22x as the activation threshold. Strategy has raised $8.5B via Stretch in 10 months ($2.07B Q1, $3.51B April 1–May 3) against ~$1.5B annual preferred dividend obligations.
+- ***Why this matters:*** Strategy is the single largest corporate BTC holder. A formalized sell rule transmits to BTC spot liquidity dynamics whenever mNAV compresses — a tail risk the bank's treasury, trading, and risk teams should now explicitly model. It also has implications for the broader "bitcoin treasury company" sector that has copied the Strategy playbook with thinner balance sheets.
+
+*Also noted:* KDDI is acquiring a [14.9% stake in Nasdaq-listed Coincheck Group for $65M](https://substack.com/redirect/6a0a92ea-c94e-4c1f-9237-67593f7a0528?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI). 21Shares launched the [first U.S. spot Hyperliquid ETF (THYP) on Nasdaq](https://substack.com/redirect/c0f7dd18-e712-407f-8524-de7bd876f361?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI). MARA sold [20,880 BTC for ~$1.5B in Q1](https://substack.com/redirect/c5602bcc-859d-4730-ae7f-55c8dd8f66b3?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI) for convertible buybacks and infrastructure.
+
+📐 **Data Spotlight**
+
+- Schwab retail base: ~39M accounts; pricing 75bps vs. Fidelity 1% / Morgan Stanley E*Trade 50bps / Robinhood spread-based PFOF (*51 Insights / Schwab release*).
+- E*Trade accounts: 8.6M; pilot includes BTC, ETH, SOL (*Morgan Stanley CEO note, May 6 2026*).
+- Strategy preferred-stack dividend obligation: ~$1.5B/year; STRC coupon: 11.5%; mNAV sell-trigger: <1.22x (*Strategy Q1 2026 call, May 5*).
+- Strategy capital raise via STRC: $8.5B in 10 months (*Strategy disclosures*).
+
+---
+
+### 💵 Stablecoins & Payments
+
+**⚡⚡⚡⚡ [Circle Q1 2026: revenue +20% to $694M but net income –15% to $55M; ARC token presale raised at $0.30 across TradFi+VC consortium](https://substack.com/redirect/02886228-0bc4-4e08-96f2-8c0cdbf34b04?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+Circle (NYSE: CRCL) reported Q1 results on May 11: revenue + reserve income $694M (+20% YoY), adjusted EBITDA $151M (+24%), net income $55M (–15%) as opex surged 76% (post-IPO stock comp). Distribution costs hit $407M (+17%) — driven by the Coinbase revenue share (Coinbase takes 100% of reserve income on USDC held on its platform and 50% of off-platform reserve income; agreement auto-renews every three years). Circle separately disclosed an [ARC token presale of 740M tokens at $0.30](https://substack.com/redirect/56545cb7-d474-4479-a017-0908070cd8fd?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI) — buyers include a16z crypto, Haun, General Catalyst, IDG, Apollo, BlackRock, Janus Henderson, Marshall Wace, SBI, Standard Chartered Ventures, ICE, and Bullish. Also unveiled the [Agent Stack](https://substack.com/redirect/73b95350-d25c-4114-9f5d-fc312f5752d2?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI) (Circle CLI, Agent Wallets, Agent Marketplace, Nanopayments at $0.000001) for M2M payments.
+- ***Why this matters:*** Circle is repositioning from stablecoin issuer to L1 infrastructure provider — if USDC runs natively on ARC with USDC as gas, Circle reclaims sequencer fees, float, and network economics that today bleed to Coinbase. The ARC consortium (Standard Chartered Ventures, Apollo, BlackRock, ICE) is a who's-who of pre-mainnet distribution. For a GSIB, ARC is now a strategic chain to evaluate alongside Base, Solana, and Ethereum for tokenized cash and reserves — and Standard Chartered's participation flags how peer banks are positioning.
+
+**⚡⚡⚡ [Anchorage Digital and Grupo Salinas (Mexico) partner on cross-border payments using federally regulated stablecoins](https://substack.com/redirect/707f9665-1c83-415d-a171-7ffd52761d64?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+Anchorage Digital — the only federally chartered U.S. crypto custodian — and Mexican conglomerate Grupo Salinas (banking, retail, telecom) partnered to process cross-border flows using regulated stablecoins.
+- ***Why this matters:*** This is a meaningful U.S.-Mexico corridor win at a moment when the corridor's traditional rails (correspondent banking + remittance processors) are under pricing pressure from PYUSD, USDC, and bank-issued tokens. For any GSIB with LatAm correspondent exposure, the question is whether the bank's USD corridor revenue stays at par with stablecoin rails — or whether the float and FX spread compress.
+
+**⚡⚡⚡ [Privy integrates embedded wallet infrastructure with Stripe Terminal and Tap to Pay SDK for in-person stablecoin payments](https://substack.com/redirect/3bf0ecce-2524-4e83-8806-d3fbbe13c497?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+Privy (acquired by Stripe in 2025) brought wallet infra natively into Stripe's hardware terminal and Tap to Pay SDK — making any Stripe merchant capable of accepting stablecoin payments in-person without separate POS hardware.
+- ***Why this matters:*** This is the largest in-person stablecoin acceptance unlock since the Visa/Stripe stablecoin settlement pilots. The merchant-acquiring economics of stablecoin payments now compete directly with interchange — pressure on issuer-side interchange revenue that funds cardback rewards programs is no longer theoretical. The bank's card business needs a 2027-2028 interchange-erosion scenario in its strategic plan.
+
+*Also noted:* Paybis secured a [MiCA CASP plus PSD2 PI license from Latvia's central bank](https://substack.com/redirect/b0306305-c459-4b97-8ee4-7139cc2db293?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI), expanding licensed crypto-payment rails inside the EU.
+
+📐 **Data Spotlight**
+
+- Circle Q1 2026: revenue $694M (+20% YoY), adj. EBITDA $151M (+24%), net income $55M (–15%) (*Circle 10-Q via 51 Insights*).
+- Circle distribution costs: $407M Q1 (+17% YoY), driven by Coinbase 100%-on-platform / 50%-off-platform reserve share (*Coinbase Q1 2026 call: CFO Alesia Haas, CLO Paul Grewal*).
+- Circle Reserve Fund (USDXX) AUM: ~$66B, ~90% managed by BlackRock (*51 Insights*).
+- ARC presale: 740M tokens at $0.30 across VC/TradFi/exchange consortium (*ARC Whitepaper*).
+
+---
+
+### 🛠️ Technology & Infrastructure
+
+**⚡⚡⚡⚡ [DTCC selects Chainlink infrastructure and data standards for Collateral AppChain](https://substack.com/redirect/e788f208-9549-4b16-9fc3-72f308604855?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+DTCC formalized Chainlink as the data and infrastructure layer underneath the production Collateral AppChain — extending earlier Smart NAV and CCIP pilots into a live, post-trade core utility.
+- ***Why this matters:*** This is the highest-profile institutional endorsement of an interoperability protocol so far. For a GSIB, it sharply tilts the interop-layer decision: building proprietary bridges or routing through alternative interop stacks (LayerZero, Wormhole, Hyperlane) now has to justify why it diverges from the DTCC standard. Expect a wave of secondary buy-side adoption.
+
+**⚡⚡⚡ [CME Group plans cash-settled Nasdaq-backed crypto index futures for June 8, pending regulatory review](https://substack.com/redirect/f4fbbdc4-9e41-450b-b998-6a266e3f8880?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI)**
+CME and Nasdaq are launching cash-settled index futures, expanding the regulated-derivatives toolkit beyond single-asset BTC/ETH contracts.
+- ***Why this matters:*** Index futures meaningfully reduce hedging cost and basis risk for tokenized fund issuers, multi-asset ETF managers, and crypto-active asset managers. For the bank's prime brokerage and clearing business, this is incremental margin and clearing wallet — particularly if combined with the CFTC's emerging stance on prediction-market preemption.
+
+*Also noted:* Pepperstone (global forex/CFD broker) deployed [Fireblocks for digital asset custody, compliance, and DeFi execution](https://substack.com/redirect/c03a4466-0eba-42f2-9a8e-9955f6eb3473?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI). Blockchain analytics firm Elliptic raised [$120M Series D at a $670M valuation](https://substack.com/redirect/796649a8-3f27-4c33-8cc1-a2c88d1ffd23?j=eyJ1IjoiMzduenQ4In0.JuJA2BCWs05_JUpuRXUP_0XLTm_VsKqbocDhqyMfswI).
+
+📐 **Data Spotlight**
+
+- DTCC Collateral AppChain go-live target: Q4 2026 (*DTCC release, May 12 2026*).
+- Elliptic Series D: $120M raise at $670M post-money valuation (*51 Insights*).
+- CME×Nasdaq crypto index futures planned launch: June 8, 2026 (cash-settled, pending review) (*CME via 51 Insights*).
+
+---
+
+### 📊 Markets & Macro
+
+**⚡⚡⚡ [Brent Johnson (Santiago Capital) reframes Dollar Milkshake: stablecoins are now the "stealth weapon of empire" re-dollarizing global flows](https://www.51insights.xyz/p/de-dollarization-is-dead-with-brent)**
+In a long-form 51 Insights conversation, Johnson — author of the 2018 Dollar Milkshake Theory — argues stablecoins drive structural demand for U.S. Treasuries by giving global savers a faster, cheaper way to hold dollars. Cites DXY ~99.66 alongside gold at $5,000+ as evidence of his "dollar strong relative / weak absolute" dual-track call. Argues stablecoins are not an escape from the dollar system — they *are* the dollar system, upgraded.
+- ***Why this matters:*** The macro frame matters for treasury and reserves: if stablecoin-driven Treasury demand persists at scale (BCG projects $9T plateau = 15% of M2), the marginal buyer of front-end U.S. paper shifts toward private-sector stablecoin issuers, materially affecting bills-market microstructure and money-market fund competition. A GSIB's rates desk should be modeling the price impact of stablecoin reserve flows on T-bill yields.
+
+📐 **Data Spotlight**
+
+- DXY: ~99.66 (*Santiago Capital / 51 Insights podcast, May 15*).
+- Gold spot: crossed $5,000 (*Santiago Capital*).
+- Stablecoin TAM (BCG pre-release): $9T plateau = 15% of M2 absent monetary regime change (*BCG via 51 Insights*).
+
+---
+
 `;
-const FEED_ITEMS = [{"id": "19e3143d25651832", "subject": "A Landmark Win for Crypto", "sender": "Substack", "snippet": "CLARITY Act Advances Through Senate Banking Committee. The 309-page bill draws SEC/CFTC jurisdictional lines and creates insolvency safe harbors enabling institutional prime brokerage.", "date": "2026-05-16T14:48:58Z", "cat": "reg", "url": "https://www.veradiverdict.com/p/a-landmark-win-for-crypto"}, {"id": "19e2de29be9380de", "subject": "178: BlackRock to squeeze stablecoin yield", "sender": "Substack", "snippet": "Watch now (7 mins) | Coming Monday: BCG's flagship report on the future of digital assets in banking — 68 pages projecting tokenized RWAs at $88T by 2035.", "date": "2026-05-15T23:04:16Z", "cat": "stable", "url": "https://www.51insights.xyz/p/178-moodys-aaa-for-an-erc-20"}, {"id": "19e2cebfa5b27625", "subject": "How stablecoins saved the dollar, with Brent Johnson, Santiago Capital", "sender": "Substack", "snippet": "Watch now (36 mins) | Hi, it's Marc. Santiago Capital's Brent Johnson argues dollar-backed stablecoins are re-dollarizing the world from the bottom up — creating structural Treasury demand.", "date": "2026-05-15T17:35:00Z", "cat": "other", "url": "https://www.51insights.xyz/p/de-dollarization-is-dead-with-brent"}, {"id": "19e2b67c7de1d6b4", "subject": "Circle Launches Arc Token (MC 5/14)", "sender": "Mail", "snippet": "PLUS Ep 32: Irina Chuchkina on Wallet in Telegram's Local Growth Playbook. Circle's ARC token presale at $0.30 to consortium including a16z, Apollo, BlackRock, Standard Chartered Ventures, Janus Henderson, Marshall Wace, SBI, and ICE.", "date": "2026-05-15T11:31:21Z", "cat": "stable", "url": "https://content.stablecon.com/p/circle-launches-arc-token-mc-5-14"}, {"id": "19e2b57eb2e46d29", "subject": "The law was built for companies. The future may run on networks.", "sender": "Substack", "snippet": "Why the CLARITY Act is really about whether decentralized networks can exist as first-class institutions in the United States.", "date": "2026-05-15T11:12:09Z", "cat": "reg", "url": "https://a16zcrypto.substack.com/p/the-law-was-built-for-companies-the"}, {"id": "19e2b32670dfeb4c", "subject": "Bank of England Considers Rollback of Stablecoin Restrictions", "sender": "Tokenizationinsight", "snippet": "Digital Asset Commercialization Insights | Bank of England considers potential rollback of stablecoin restrictions in the UK. The BoE is reassessing its proposed stablecoin framework after industry feedback.", "date": "2026-05-15T10:33:02Z", "cat": "reg", "url": "https://www.tokenizationinsight.com/post/bank-of-england-considers-rollback-of-stablecoin-restrictions"}, {"id": "19e2217e8048749e", "subject": "JPMorgan to Launch Tokenized Money Market Fund on Ethereum", "sender": "Tokenizationinsight", "snippet": "Digital Asset Commercialization Insights | JPMorgan to launch a second tokenized MMF on Ethereum. JPMorgan Asset Management has filed for the JPMorgan OnChain Liquidity-Token Money Market Fund (ticker: JLTXX).", "date": "2026-05-13T16:07:31Z", "cat": "token", "url": "https://www.tokenizationinsight.com/post/jpmorgan-to-launch-tokenized-money-market-fund-on-ethereum"}, {"id": "19e20f27a213f358", "subject": "The Reserves Race Begins", "sender": "Mail", "snippet": "Two SEC filings, three institutional raises, one Bank of England verdict. The flywheel between Wall Street capital and onchain infrastructure is spinning.", "date": "2026-05-13T10:47:01Z", "cat": "reg", "url": "https://news.enterpriseonchain.com/p/the-reserves-race-begins"}, {"id": "19e20ef19db5cf5e", "subject": "JPMorgan Kinexys Surpasses $3 Trillion in Tokenized Repo since Launch", "sender": "Tokenizationinsight", "snippet": "Digital Asset Commercialization Insights | JPMorgan has processed $3 trillion worth of tokenized repo since launch six years ago according to Bloomberg.", "date": "2026-05-13T10:43:19Z", "cat": "token", "url": "https://www.tokenizationinsight.com/post/jpmorgan-kinexys-surpasses-3-trillion-in-tokenized-repo-since-launch"}];
-const GENERATED_AT = "2026-05-16T23:48:26.548349+00:00";
+const FEED_ITEMS = [{"id": "19e3143d25651832", "subject": "A Landmark Win for Crypto", "sender": "Pantera / veradiverdict", "snippet": "The U.S. Senate Banking Committee delivered a historic bipartisan vote, advancing the Digital Asset Market Clarity Act of 2025 (CLARITY Act) out of committee by a 15-9 margin. All Republicans joined two Democrats - Sens. Gallego (D-AZ) and Alsobrooks (D-MD).", "date": "2026-05-16T14:48:58Z", "cat": "reg", "url": "https://www.veradiverdict.com/p/a-landmark-win-for-crypto"}, {"id": "19e2de29be9380de", "subject": "178: BlackRock to squeeze stablecoin yield", "sender": "51 Insights", "snippet": "Moody's gave AAA to a tokenized fund (FILQ, Fidelity/Sygnum). DTCC rewired $25T of collateral with Q4 2026 Collateral AppChain. BlackRock filed BRSRV for stablecoin reserve yield. Schwab opened crypto to 39M at 75bps. Strategy ends 'never sell'.", "date": "2026-05-15T23:04:16Z", "cat": "token", "url": "https://www.51insights.xyz/p/178-moodys-aaa-for-an-erc-20"}, {"id": "19e2cebfa5b27625", "subject": "How stablecoins saved the dollar, with Brent Johnson, Santiago Capital", "sender": "51 Insights", "snippet": "Brent Johnson (Dollar Milkshake Theory, 2018) on stablecoins as a 'stealth weapon of empire' re-dollarizing global flows from the bottom up. DXY ~99.66, gold $5,000+. Stablecoins are the dollar system, upgraded.", "date": "2026-05-15T17:35:00Z", "cat": "macro", "url": "https://www.51insights.xyz/p/de-dollarization-is-dead-with-brent"}];
+const GENERATED_AT = "2026-05-17T12:42:53.746180+00:00";
 
 const State = {
   brief: null,
