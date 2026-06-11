@@ -681,71 +681,46 @@
    ====================================================== */
 
 /* ====== EMBEDDED DATA (refreshed by the 8 AM scheduled task) ====== */
-const BRIEFING_MD = `☀️ **Morning Brief — Wednesday, June 10, 2026**
+const BRIEFING_MD = `☀️ **Morning Brief — Thursday, June 11, 2026**
 
-*Editor's note:* Today's signal is the **collision of tokenized real-world assets with the collateral and reserve layer of crypto**. A $480B traditional asset manager (Janus Henderson) is now backing a synthetic dollar with tokenized AAA CLOs, while Ondo brings leveraged tokenized US equities on-chain with tokenized securities as margin. The throughline for a GSIB: tokenized credit and equities are no longer a settlement experiment — they are becoming the *backing* and *collateral* for crypto-native dollar and derivatives products. Thin overall news flow (5 unread newsletters; 2 substantive crypto sources), so coverage is concentrated rather than broad.
-
----
-
-### 🏛️ Institutional Adoption
-
-**⚡⚡⚡ [Grayscale's Hyperliquid staking ETF (HYPG) debuts at a 0.29% sponsor fee — the lowest of any US HYPE product, opening a fee war](https://unchainedcrypto.com/grayscale-sets-0-29-fee-for-hyperliquid-staking-etf-kicking-off-a-price-war-among-hype-issuers/)**
-Grayscale's HYPG began trading on Nasdaq (June 3) offering HYPE exposure plus staking yield (~2.2% historical) at a 0.29% fee that undercuts comparable Bitwise and 21Shares products. Dune's brief framed it as the "first major regulated staking product for HYPE" — institutional access to onchain staking yield via a familiar ETF wrapper. *(Ongoing since June 3; surfaced again in this cycle.)*
-- ***Why this matters:*** Regulated staking wrappers normalize "yield-bearing token exposure" as an institutional product line — directly adjacent to where a GSIB custody and asset-servicing business would compete. The immediate fee compression (0.29% as the new floor) signals that the economics of crypto ETPs are converging toward plain-vanilla ETF margins, which compresses the revenue case for late entrants and rewards scale custody/administration providers.
-
-📐 **Data Spotlight**
-- Grayscale HYPG sponsor fee: **0.29%**, now the lowest among the three US HYPE products (vs. Bitwise and 21Shares). *(Source: Unchained)*
-- Cited historical HYPE staking reward: **~2.2% annually.** *(Source: Unchained / Grayscale)*
+The macro theme today is unambiguous: US banks have stopped lobbying against stablecoins and started building against them. Seventeen of the largest US banks announced a shared tokenized deposit network through The Clearing House targeting 2027 — Wall Street's most coordinated structural answer yet to the stablecoin yield fight and a modeled $3.7T deposit-flight scenario. A quiet news day otherwise: a single substantive newsletter arrived in the last 24 hours, so today's brief runs deep on one story rather than wide.
 
 ---
 
-### 💵 Stablecoins & Payments
+### 🏦 Banking
 
-**⚡⚡⚡⚡ [Janus Henderson ($480B AUM) backs Ethena, allocating tokenized AAA CLOs into USDe's reserves and investing in ENA](https://www.coindesk.com/business/2026/06/09/ethena-lands-janus-henderson-backing-as-asset-manager-invests-in-ena-eyes-usde-distribution)**
-Ethena landed a strategic investment from $480B asset manager Janus Henderson, which will allocate its JAAA tokenized AAA-rated CLO fund (issued via Centrifuge) into the backing of the ~$4.5B USDe synthetic dollar, with a single-position cap of ~$310M approved by LlamaRisk. The framework broadens USDe's reserves beyond tokenized T-bills toward high-quality tokenized private credit, aiming for a more stable yield floor. *(See also: Tokenization of RWA; Institutional Adoption.)*
-- ***Why this matters:*** This is a live template for how a synthetic/stable dollar acquires TradFi credit credibility — and it routes around banks. A mainstream asset manager is supplying tokenized credit collateral *and* distribution, doing what a GSIB's tokenized-MMF or tokenized-credit unit would otherwise sell. For a bank, the competitive read is twofold: tokenized AAA CLOs are emerging as a reserve-asset class (a custody/issuance opportunity), and stablecoin reserve composition is migrating from pure T-bills to structured credit (a risk-monitoring and disclosure question regulators will chase).
+**⚡⚡⚡⚡⚡ [Seventeen US banks — including JPMorgan, Citi, BofA, and Wells Fargo — announce a shared tokenized deposit network through The Clearing House, targeting H1 2027](https://www.51insights.xyz/p/us-banks-are-going-on-chain)**
+The Clearing House (TCH), the payments operator owned by 25 of the largest US banks, will run the network, connecting traditional rails (RTP, CHIPS) to blockchain infrastructure for 24/7 atomic settlement; stated use cases include programmable treasury, real-time liquidity, cross-border payments, and agentic commerce. The release names 17 participants including BNY, HSBC, PNC, Truist, TD Bank, and U.S. Bank; TCH CEO David Watson called it "a big move for the banks" and described a "radically different" on-chain payments future in comments to the WSJ. Buried caveat flagged by 51 Insights: no blockchain partner has been selected, so the build has not meaningfully started. (See also: Regulation & Policy.)
+- ***Why this matters:*** This is the consortium-scale wholesale settlement layer your bank either shapes or gets shaped by — participation, technical standards input, and interoperability with in-house deposit tokens (JPMorgan's JPMD; HSBC, Citi, and BNY builds in flight) become live strategic questions now, not in 2027. The structural logic is defensive economics: tokenized deposits keep corporate balances inside the FDIC-insured perimeter and preserve lending capacity, whereas stablecoin migration destroys it. Expect a three-layer market — consortium tokens for wholesale settlement, regional networks (Cari) for mid-market, USDC/USDT for permissionless global commerce — and position product and custody roadmaps accordingly. The unselected blockchain partner is also an open competitive window for infrastructure influence.
+
+*Also noted:* Background recap via [51 Insights](https://www.51insights.xyz/p/us-banks-are-going-on-chain) — in March 2026 five regional banks (Huntington, First Horizon, M&T, KeyBank, Old National; $600B+ combined deposits) launched the Cari Network on ZKsync (pilot Q3 2026), founded by former Comptroller Eugene Ludwig; North Dakota partnered with Fiserv in 2025 on a state-level token. Ongoing context, not new in the last 24h.
 
 📐 **Data Spotlight**
-- USDe outstanding referenced at **~$4.5B**, reserves expanding beyond tokenized T-bills. *(Source: Dune brief / CoinDesk)*
-- Janus Henderson AUM: **~$480B**; JAAA position cap into USDe: **~$310M** (LlamaRisk-approved). *(Source: CoinDesk / Ethena governance)*
-- AAA CLO top tranche: historically **near-zero default rate**, yield spread modestly above T-bills. *(Source: CoinDesk)*
+
+- McKinsey (May 2026 model, cited by 51 Insights): of every $1,000 a corporate moves into a third-party stablecoin, only $150 returns to the banking system as wholesale reserves; the other $850 buys T-bills off bank balance sheets. Tokenized deposits keep the full $1,000 on-balance-sheet.
+- Bank Policy Institute (May 8, 2026, cited by 51 Insights): if stablecoins reach ~$4T by 2030, deposits first rise ~$300B then fall ~$4T — net $3.7T in destroyed deposits and a 19% decline in bank lending.
+- A December Fed note by Jessie Jiaxu Wang points the same direction: stablecoin growth likely shrinks credit supply and raises lending costs (cited by 51 Insights).
+- ABA members sent more than 8,000 letters to Senate offices during the stablecoin-yield fight (51 Insights).
 
 ---
 
-### 🔗 Tokenization of Real-World Assets
+### ⚖️ Regulation & Policy
 
-**⚡⚡⚡⚡ [Ondo Perps goes live (June 9): leveraged perpetual futures on tokenized US stocks and ETFs, with tokenized securities usable as collateral](https://www.thestreet.com/crypto/innovation/ondo-is-bringing-leveraged-stock-trading-on-chain)**
-Ondo Finance launched Ondo Perps, offering non-US users up to 20x leverage on perpetual futures referencing US equities and ETFs (AAPL, NVDA, TSLA, MSTR, COIN, QQQ, plus XAU/XAG), and notably allows tokenized securities — not just stablecoins — to be posted as collateral. ONDO rallied sharply into the launch. *(See also: DeFi & Protocols.)*
-- ***Why this matters:*** The collateral design is the real signal: accepting tokenized securities as margin turns tokenized RWAs into a *funding* layer, not just a holding. That is precisely the capital-efficiency thesis a GSIB tokenization desk is chasing for repo and collateral mobility — and a crypto-native venue is shipping it offshore first. The non-US restriction (equity perps are barred for US retail) also maps the regulatory arbitrage frontier a bank must watch before any onshore tokenized-equity ambitions.
+**⚡⚡⚡ [CLARITY Act cleared the Senate Banking Committee on May 14 carrying the Tillis-Alsobrooks compromise on stablecoin yield](https://www.51insights.xyz/p/us-banks-are-going-on-chain)**
+Under the compromise, stablecoins cannot pay passive, deposit-style yield, but rewards tied to actual usage remain legal — banks had lobbied to close that loophole entirely and lost. The GENIUS Act (signed July 2025) already bars stablecoin issuers from paying interest, taking deposits, or making loans, and excludes them from deposit insurance; tokenized deposits sit on the opposite side of every one of those lines — they pay interest legally, carry FDIC insurance up to $250,000, and fund loans. Jamie Dimon's public position: crypto firms that want to pay yield should apply for banking charters. (Context item — committee passage was May 14; today's relevance is its role as the trigger for the TCH build.)
+- ***Why this matters:*** The Tillis-Alsobrooks usage-rewards carve-out is the live regulatory fault line: if "usage rewards" get stretched into de facto yield, the deposit-flight math above re-activates and the bank's stablecoin exposure framework needs revisiting. Conversely, the GENIUS Act moat (insured, yield-bearing, loan-funding on-chain dollars exclusive to banks) is the strongest regulatory tailwind tokenized deposit products have had — a corporate treasurer choosing between two on-chain dollars faces a simple test: one yields and is insured, the other is neither. Floor vote timing and final yield language are the items to track.
 
 📐 **Data Spotlight**
-- Ondo Perps leverage: **up to 20x**, 24/7 trading, non-US only. *(Source: TheStreet / Bitget)*
-- Launch roster includes **~18+ underlyings** (AAPL, AMZN, COIN, CRCL, GOOGL, HOOD, META, MSFT, MSTR, NVDA, PLTR, QQQ, TSLA, plus XAU/XAG). *(Source: search of launch coverage)*
+
+- GENIUS Act perimeter (51 Insights summary): stablecoin issuers may not pay interest, take deposits, or make loans, and are excluded from FDIC insurance; bank tokenized deposits carry FDIC coverage up to $250,000.
+- 8,000+ ABA member letters to Senate offices preceded the Tillis-Alsobrooks compromise (51 Insights).
 
 ---
 
-### 📊 Markets & Macro
-
-**⚡⚡⚡ [Dune: Polymarket's Finance markets are pricing macro moves on the same timeline as listed futures — Commodities overtook Equities in March](https://www.google.com/search?q=%22What+Polymarket%27s+finance+markets+price+that+listed+venues+don%27t%22+site%3Adune.com)**
-Per Dune's prediction-markets dataset, Polymarket's Commodities book overtook its Equities book in March as oil surged on the US–Iran conflict (Hormuz ultimatum week), with the Commodities book responding to geopolitical events on the same timeline as listed futures. Finance-market wallets behave unlike the platform baseline: a typical Polymarket wallet runs ~166 trades over eight weeks at a ~$9 median ticket, whereas Finance wallets trade just 4–12 times each but at materially larger size. Dune also flags that a "Global Markets desk" launched OTC event-contract exposure in late May.
-- ***Why this matters:*** Prediction markets are maturing into a parallel price-discovery venue for macro and event risk, and the wallet data suggests sophisticated, low-frequency/high-size participants — i.e., the early shape of institutional flow. The "OTC event-contract" desk launch is the more important institutional-infrastructure tell: if event contracts gain depth for institutional sizing, they become a hedging and sentiment input a bank's markets and risk functions cannot ignore.
-
-📐 **Data Spotlight**
-- Typical Polymarket wallet: **~166 trades / 8 weeks at ~$9 median ticket**; Finance wallets: **4–12 trades** at larger size. *(Source: Dune prediction-markets dataset)*
-- Commodities book **overtook Equities in March 2026** as oil spiked on US–Iran/Hormuz tensions. *(Source: Dune)*
-
----
-
-### 💼 Business News
-
-*Also noted:* This Week in Fintech argues AI is acting as a capital "vacuum" pulling venture money out of fintech, citing Anthropic's **$65B Series H** this fortnight and an all-time-high **$300B** Q1 2026 global venture figure (Crunchbase) against a thin **$1.9B** weekly global fintech tally — its thesis: "every pound vacuumed into the AI trade is a pound not building unglamorous payments rails." [The AI Funding Vacuum](https://www.thisweekinfintech.com/p/the-ai-funding-vacuum)
-
-📐 **Data Spotlight**
-- Anthropic **$65B Series H** (this fortnight); Q1 2026 global venture **$300B** all-time high (Crunchbase). *(Source: This Week in Fintech)*
-- Weekly global fintech funding tally: **~$1.9B.** *(Source: This Week in Fintech)*
+*Coverage note: one relevant newsletter arrived in the last 24 hours (51 Insights CEO Notes, June 10). All other themes had no qualifying stories and are omitted. Story-level links point to the 51 Insights post; underlying sources (TCH release, WSJ interview, McKinsey/BPI models) are linked therein via Substack redirects that could not be independently resolved this run. The BCG "Future of Digital Assets" report has not appeared in the inbox.*
 `;
-const FEED_ITEMS = [{"id": "19eac5be5721c1b4", "subject": "Ethena lands Janus Henderson ($480B) backing; tokenized AAA CLOs into USDe reserves", "sender": "Dune Digital Asset Brief", "snippet": "Ethena expands USDe backing into tokenized AAA-rated CLOs. The proposed framework broadens the $4.5B stablecoin's backing beyond tokenized T-bills; Janus Henderson allocates JAAA (via Centrifuge) and invests in ENA.", "date": "2026-06-09", "cat": "stable", "url": "https://www.coindesk.com/business/2026/06/09/ethena-lands-janus-henderson-backing-as-asset-manager-invests-in-ena-eyes-usde-distribution"}, {"id": "19eac5be5721c1b4", "subject": "Ondo Perps live (June 9): leveraged perpetual futures on tokenized US stocks and ETFs", "sender": "Dune Digital Asset Brief", "snippet": "Ondo Perps launched. Perpetual futures on tokenized U.S. stocks and ETFs, up to 20x leverage, non-US, with tokenized securities usable as collateral.", "date": "2026-06-09", "cat": "token", "url": "https://www.thestreet.com/crypto/innovation/ondo-is-bringing-leveraged-stock-trading-on-chain"}, {"id": "19eac5be5721c1b4", "subject": "Grayscale Hyperliquid staking ETF (HYPG) debuts at 0.29%, lowest US HYPE fee", "sender": "Dune Digital Asset Brief", "snippet": "First major regulated staking product for HYPE at 0.29% sponsor fee. Institutional access to staking yield via a familiar ETF wrapper; undercuts Bitwise and 21Shares.", "date": "2026-06-09", "cat": "inst", "url": "https://unchainedcrypto.com/grayscale-sets-0-29-fee-for-hyperliquid-staking-etf-kicking-off-a-price-war-among-hype-issuers/"}, {"id": "19eac5be5721c1b4", "subject": "What Polymarket's finance markets price that listed venues don't", "sender": "Dune Digital Asset Brief", "snippet": "Polymarket Finance markets: Commodities overtook Equities in March as oil surged on the US-Iran conflict; prediction markets price macro on the same timeline as listed futures. A Global Markets desk launched OTC event-contract exposure in late May.", "date": "2026-06-09", "cat": "macro", "url": "https://www.google.com/search?q=%22What+Polymarket%27s+finance+markets+price+that+listed+venues+don%27t%22+site%3Adune.com"}, {"id": "19eae5dbb6fdca29", "subject": "The AI Funding Vacuum", "sender": "This Week in Fintech", "snippet": "As AI continues to attract capital inflow, it's worth asking from where. Anthropic raised a $65bn Series H this fortnight; Crunchbase clocked Q1 2026 global venture at an all-time high of $300bn, while the weekly global fintech tally was just $1.9bn.", "date": "2026-06-09", "cat": "biznews", "url": "https://www.thisweekinfintech.com/p/the-ai-funding-vacuum"}, {"id": "19eacb2d0497357a", "subject": "One more thing on the free portal", "sender": "Delphi Digital", "snippet": "Quick note. We rolled out the free Delphi Portal. Signup to access research and dashboards.", "date": "2026-06-09", "cat": "other", "url": "https://delphidigital.io"}, {"id": "19eac50cb015d161", "subject": "a16z crypto and Marc Baumann posted new notes", "sender": "Substack", "snippet": "a16z crypto and Marc Baumann posted new notes.", "date": "2026-06-09", "cat": "other", "url": "https://substack.com"}];
-const GENERATED_AT = "2026-06-10T04:20:10.912380+00:00";
+const FEED_ITEMS = [{"id": "19eb1c075e05dbc3", "subject": "US Banks are going on-chain", "sender": "51 Insights (CEO Notes)", "snippet": "JPMorgan, Citi, BofA, and Wells Fargo just announced a shared tokenized deposit network through The Clearing House, targeting 2027. 17 banks total, incl. BNY, HSBC, PNC, Truist, TD Bank, U.S. Bank. Connects RTP/CHIPS to blockchain rails for 24/7 atomic settlement; no blockchain partner selected yet.", "date": "2026-06-10T12:34:43Z", "cat": "bank", "url": "https://www.51insights.xyz/p/us-banks-are-going-on-chain"}];
+const GENERATED_AT = "2026-06-11T12:12:17.033900+00:00";
 
 const State = {
   brief: null,
